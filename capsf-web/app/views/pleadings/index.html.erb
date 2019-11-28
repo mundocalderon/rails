@@ -1,0 +1,51 @@
+<%- model_class = Pleading -%>
+
+<% content_for :top do %>
+	  <h2>Sample Pleadings</h2>
+<% end %>
+<h3>Sample Pleading Search:</h3>
+<%= simple_form_for :query,  url: pleadings_search_path , :method => :get, :html => { :class => 'form-search'} do |f| %>
+  <%= f.input :query, :input_html => { class: "span7 search-query", 
+																				placeholder: "Search for a sample pleading by Title, Case Name, Category, etc.", :autocomplete => "off" }, label: false, :autofocus => true %>
+  <%= f.submit "Search Sample Pleadings", :class => 'btn' %>
+	<%= link_to "Reset Search", pleadings_path, :class => 'btn btn-link' %>
+<% end %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= sort_link @search, :title, model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= sort_link @search, :date_filed, model_class.human_attribute_name(:date_filed) %></th>
+      <th><%= model_class.human_attribute_name(:agency) %></th>
+      <th><%= model_class.human_attribute_name(:case_name) %></th>
+
+			<% if current_user.super_admin? %>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    	<% end %>
+		</tr>
+  </thead>
+  <tbody>
+    <% @pleadings.each do |pleading| %>
+      <tr>
+        <td><%= link_to pleading.title, pleading_path(pleading) %></td>
+        <td><%= pleading.description %></td>
+        <td><%= pleading.date_filed.to_date.try(:strftime, '%B %d, %Y')  %></td>
+        <td><%= pleading.agency %></td>
+        <td><%= pleading.case_name %></td>
+        <% if current_user.super_admin? %>
+					<td><%= link_to t('.edit', :default => t("helpers.links.edit")),
+	                      edit_pleading_path(pleading), :class => 'btn btn-mini' %>
+	          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	                      pleading_path(pleading),
+	                      :method => :delete,
+	                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+	                      :class => 'btn btn-mini btn-danger' %>
+	        </td>
+				<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @pleadings %>

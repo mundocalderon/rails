@@ -1,0 +1,11 @@
+<dl class="news box">
+  <dt><%= a.created_at.strftime("%b")%><br><%= a.created_at.strftime("%d")%> </dt>
+  
+  <dd>  
+  <span><%= a.text %></span><br>
+  A user has canceled an event titled <%= p[:title] %> and hosted  by <%= p[:host] %>
+  <hr>
+  </dd>
+
+</dl>
+

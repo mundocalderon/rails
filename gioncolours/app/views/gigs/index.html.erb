@@ -1,0 +1,47 @@
+<%- model_class = Gig -%>
+
+<div class="container">
+	<div class="row">
+    	<div class="col-md-12">
+			
+			<div class="page-header">
+			  <h1>Shows</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+    	<div class="col-md-12">
+			
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			      <th><%= model_class.human_attribute_name(:date) %></th>
+			      <th><%= model_class.human_attribute_name(:location) %></th>
+			      <th><%= model_class.human_attribute_name(:venue) %></th>
+			      <th><%= model_class.human_attribute_name(:details) %></th>
+				  
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <% @gigs.each do |gig| %>
+			      <tr>
+			        <td class="col-xs-2"><%= link_to gig.date.strftime("%m/%d/%Y"), gig %></td>
+			        <td class="col-xs-2"><%= gig.location %></td>
+			        <td class="col-xs-2"><%= if !gig.link.blank? then link_to gig.venue,url_with_protocol(gig.link), :target => :blank else gig.venue end %></td>
+			        <td class="col-xs-6"><%= gig.details %> <%= if gig.with_tpc? then image_tag "/images/swirl-icon.png", :class => "responsive-img" end %> </td>
+					
+			      </tr>
+			    <% end %>
+			  </tbody>
+			</table>
+			
+			<small class="pull-right text-muted"><%= image_tag "/images/swirl-icon.png", :class => "responsive-img"%> Joel Gion will be playing with The Primary Colours</small>
+			<%= link_to t('.new', :default => t("helpers.links.new")),
+			            new_gig_path,
+			            :class => 'btn btn-primary' %>
+		</div>
+	</div>
+</div>

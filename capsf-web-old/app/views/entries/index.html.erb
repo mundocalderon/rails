@@ -1,0 +1,55 @@
+<% content_for :right do %>
+  <div id="content-right">
+    <div class="box-01-top"></div>
+    <div class="box-01-top-b box">
+      <span class="f-right"> </span>
+      <span class="f-left"> <a href="javascript:void(0)"><strong> Activity Feed</strong></a></span>
+    </div>
+    <div class="box-01">
+      
+      <div id="activities">
+        <%= render :partial => "activities"%>
+      </div>
+      
+      <div id="activity-paginator">
+        <%= paginate @activities, :remote => true %>
+      </div>
+
+    </div>
+
+    <div class="box-01-bottom"></div>
+  </div>
+<% end %>
+
+<% if params[:category] %>
+  <%= render :partial => "entries/category_partials/#{params[:category]}" %>
+<% else%>
+  <%= render :partial => "ransack" if request.fullpath == search_path %>
+    <div id="content-left">
+      <div id="content-left-in">
+          <% @entries.each do |entry| %>
+            <div class="article box">
+              <div class="article-desc">
+                <h3><%= link_to "#{entry.title.titleize}", entry.doc_url.to_s %></h3>
+                
+                <p class="info">Published on:<strong> <%= entry.document_date.blank? ?  " Date Not Known" : entry.document_date.strftime('%B %d, %Y') %></strong><br>
+                Entry Type:<strong> <%= entry.entry_type.name %></strong></p>
+                
+                <p class="nomb"><%= entry.description.capitalize %></p>
+              
+                <p class="info ">Categories: <% for category in entry.categories %><%= category.name %> | <% end %></p>
+                
+                <p class="info">Sub-Categories: <% for subcategory in entry.subcategories %><%= subcategory.name %> | <% end %><p>
+            
+                <%= link_to 'Show', entry %>
+                <%= link_to 'Edit', edit_entry_path(entry) %>
+                <%= link_to 'Destroy', entry, confirm: 'Are you sure?', method: :delete %>
+              </div>
+            </div>
+          <% end %>
+
+        <%= link_to 'New Entry', new_entry_path %>
+      </div>
+    </div>
+
+<% end %>

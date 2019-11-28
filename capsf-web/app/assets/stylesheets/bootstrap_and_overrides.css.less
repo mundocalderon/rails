@@ -1,0 +1,180 @@
+@import "twitter/bootstrap/bootstrap";
+
+html, 
+body { 
+	height: 100%;
+}
+
+//.navbar-inverse .navbar-inner {
+//	border-bottom-color: #d4d4d4;
+//}
+
+//#sub-wrap > .container-fluid,
+#wrap > .container-fluid {
+  padding-top: 60px;
+}
+
+
+
+.container-fluid .credit {
+	margin: 20px 0 0 0;
+}
+
+#recaptcha_table,
+.recaptchatable{
+	line-height:0px;
+}
+
+.activity-box{
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+.activity-box > hr{
+	margin: 15px 0px 15px 0px;
+}
+
+.activity-box > dd,
+.activity-box > dt {
+	line-height:18px;
+}
+
+.btn-group {
+	margin-bottom: 20px;
+}
+
+.nav-list > li {
+	line-height:20px;
+	margin: 5px 0;
+}
+
+.entry-title{
+	margin-top:0px;
+	margin-bottom:0px;
+	line-height:16px;
+}
+
+.lead {
+	margin-bottom:10px;
+}
+
+.title-header{
+	color:@white;
+	padding:15px 0px;
+	margin-bottom: 5px;
+	#gradient > .horizontal(darken(@blue,20%), @linkColor)
+}
+
+.no-top-margin{
+	margin-top:0px;
+}
+
+
+
+.popover-static {
+	position: relative;
+	display: block;
+	float: left;
+	width: 260px;
+	height: 135px;
+	margin:25px 10px 25px 10px;
+	line-height:15px;
+}
+
+.item-multiplier{
+	font-size:90%;
+	font-weight: normal;
+	margin-right: 4px;
+	color:#999;
+}
+
+.no-overflow{
+	height:66px;
+	overflow:hidden;
+}
+
+.dl-horizontal > dd:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.subcategory {
+	line-height:24px;
+}
+
+input[type="text"].no-bottom-margin{
+	margin-bottom:0px;
+}
+
+
+
+@import "twitter/bootstrap/responsive";
+.navbar-fixed-top {
+  position: fixed;
+  margin-bottom: 0px;
+}
+
+//Allows for new lines in tooltip
+.tooltip-inner {
+    white-space:pre;
+		max-width:none;
+}
+
+//fixing opacity for tooltips
+.tooltip.in {
+	font-size: 12px;
+  opacity: .92;
+  filter: alpha(opacity=80);
+}
+
+.tag-list {
+	overflow-y: auto;
+	max-height: 1800px;
+}
+
+
+#recaptcha_response_field{
+	height:14px;
+}
+
+.field{
+	margin-bottom:10px;
+}
+
+.entries-list-buttons{
+	margin:10px;
+}
+
+// Set the correct sprite paths
+@iconSpritePath: url("glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+//@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+//@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+//@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+//@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+//@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
+
+
+// Font Awesome
+//@import "fontawesome/font-awesome";
+
+// Glyphicons
+@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+@baseFontSize: 16px;
+@baseLineHeight: 26px;
+@import "token-input-bootstrap";

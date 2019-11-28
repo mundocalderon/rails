@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date_of_issue: 2013-03-01
+  date_of_return: 2013-03-01
+
+two:
+  date_of_issue: 2013-03-01
+  date_of_return: 2013-03-01

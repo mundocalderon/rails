@@ -1,0 +1,55 @@
+<div id="calendar">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @events_by_date[date] %>
+      <ul>
+        <% @events_by_date[date].each do |event| %>
+          <li><%= link_to event.name, event %></li><br>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<% if current_user.role.eql?("Admin") %>
+  <h1>Listing events</h1>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Event type</th>
+      <th>Host</th>
+      <th>Published</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.event_type %></td>
+      <td><%= event.host %></td>
+      <td><%= event.published %></td>
+      <td><%= event.start_date %></td>
+      <td><%= event.end_date %></td>
+      <td><%= link_to 'Show', event %></td>
+      <td><%= link_to 'Edit', edit_event_path(event) %></td>
+      <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <br />
+
+  <%= link_to 'New Event', new_event_path %>
+<% end %>

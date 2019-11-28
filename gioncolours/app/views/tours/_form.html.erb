@@ -1,0 +1,57 @@
+<div class="col-md-10">
+	<%= simple_nested_form_for @tour, :html => { :class => 'form-horizontal' } do |f| %>
+		<div class="col-md-4">
+			<%= f.input :title %>
+	   	</div>
+		<div class="col-md-3 col-md-offset-1">
+			<%= f.input :date_begin %>
+		</div>
+		<div class="col-md-3 col-md-offset-1">
+		    <%= f.input :date_end %>
+		</div>
+	   <div class="col-md-12">
+	  		<%= f.input :description, input_html:{ rows:'5'} %>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Add Gigs</h2>
+
+				<%= f.simple_fields_for :gigs,
+				wrapper_mappings: {
+				check_boxes: :vertical_radio_and_checkboxes,
+				radio_buttons: :vertical_radio_and_checkboxes,
+				file: :vertical_file_input,
+				boolean: :vertical_boolean
+				} do |g| %>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="col-xs-3">
+								<%= g.input :date, :as => :string, input_html:{ class:'ui-datepicker' } %>
+							</div>
+							<div class="col-xs-3 col-md-offset-1">
+								<%= g.input :venue, label:"Venue Name" %>
+							</div>
+							<div class="col-xs-3 col-md-offset-1">
+							    <%= g.input :location %>
+							</div>
+							<div class="col-xs-12">   
+								<%= g.input :details, input_html:{ rows:'2' } %>
+								<%= g.input :link, :hint => "Add link to Venue's Website or to Ticket Vendor." %>
+							</div>
+						</div>
+						<div class="panel-footer"><%= g.link_to_remove "Remove Gig", class: "btn btn-danger" %></div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+
+	
+		<hr>
+		<%= f.link_to_add "Add a Gig", :gigs, class: "btn btn-primary add_fields" %>
+	    <%= f.button :submit, :class => 'btn-primary' %>
+	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                  tours_path, :class => 'btn btn-default' %>
+				
+	<% end %>
+</div> 

@@ -1,0 +1,32 @@
+<h2>Listing users</h2>
+
+<!-- Commented out because this isn't how new users should be created% link_to 'New User', new_user_registration_path, :form_class => "button float-right" %-->
+
+<table>
+  <tr>
+    <th>User Id</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Created On</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.email %></td>
+    <td><%= user.role %></td>
+    <td><%= user.created_at.strftime('%B %d, %Y') %></td>
+    
+
+    <td><%= link_to 'Show', profile_path(user.id) %></td>
+    <td><%= link_to 'Edit', admin_edit_user_path(user.id) %></td>
+    <td><%= link_to 'Destroy', admin_destroy_user_path(user.id), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+

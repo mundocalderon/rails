@@ -1,0 +1,10 @@
+<%= simple_form_for @dpi_chapter, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :dpi_tag %>
+  <%= f.input :description %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                dpi_chapters_path, :class => 'btn' %>
+  </div>
+<% end %>

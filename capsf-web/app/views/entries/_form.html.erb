@@ -1,0 +1,27 @@
+<%= simple_form_for(@entry, :html => {:class => "form-horizontal", :multipart => true}) do |f| %>
+	<div class="form-inputs">
+		<%= f.input :title, input_html: { class: "input-xxlarge", placeholder: "Title"}, :autofocus => true %>
+    <%= f.input :document_date, :as => :string, input_html: { class: "input-xlarge", placeholder: "Document Date"}%>
+    <%= f.input :description, input_html: { rows:8, class: "input-xxlarge", placeholder: "Description"} %>
+    <%= f.input :author, input_html: { class: "input-xlarge", placeholder: "Author / Source"}%>
+    <%= f.association :categories, input_html: { class: "input-xxlarge"} %>
+		<%= f.association :subcategories, :as => :grouped_select, :collection => Category.all, 
+			:group_method => :subcategories, :group_label_method => :name, :label_method => :name, input_html:{ class: "input-xxlarge", multiple: true } %>
+    <%= f.association :entry_type, input_html: { class: "input-xxlarge"}%>
+		<%= f.input :tag_list, input_html: {class: "input-xxlarge", id: "entry_tags", "data-load" => @entry.tags.map {|tag| {:id => tag.name, :name => tag.name } }.to_json } %>
+
+    <%= f.input :doc, input_html: { class: "input-xxlarge", placeholder:"Document" },  :hint => "document currently associated : #{@entry.doc.to_s}" %>
+		<%= f.input :external_website, input_html: { class: "input-xxlarge", placeholder: "Website URL"} %>
+
+    <%= f.input :published, label: false, :inline_label => true, as: :boolean, :hint => "Unpublished posts will not be show to users." %>
+		<%= f.input :highlight, label: false, :inline_label => true, as: :boolean, :hint => "Highlighting the Document will show them at the top of Pages."%>
+	  
+	</div>
+	<div class="form-actions">
+    	<%= f.button :submit, :class => 'btn-primary btn' %>
+        <%= link_to 'Back', :back , :class => 'btn btn-small' %>
+	</div>
+<% end %>
+
+
+

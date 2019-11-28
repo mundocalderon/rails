@@ -1,0 +1,96 @@
+<%- model_class = Person -%>
+<div class="page-header">
+  <h1><%= @person.first_name + " " + @person.last_name %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @person.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @person.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:middle_initial) %>:</strong></dt>
+  <dd><%= @person.middle_initial %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:suffix) %>:</strong></dt>
+  <dd><%= @person.suffix %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date_of_birth) %>:</strong></dt>
+  <dd><%= @person.date_of_birth %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date_of_death) %>:</strong></dt>
+  <dd><%= @person.date_of_death %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:nicknames) %>:</strong></dt>
+  <dd><%= @person.nickname %></dd>
+  <dt><strong>Tax ID:</strong></dt>
+  <dd><%= @person.tax_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:license) %>:</strong></dt>
+  <dd><%= @person.license %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:spanish_speaking) %>:</strong></dt>
+  <dd><%= @person.spanish_speaking %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @person.status %></dd>
+</dl>
+<hr>
+
+<% if !@person.documents.empty? || !@person.contacts.empty? || !@person.addresses.empty? %>
+	<h2> Expert Attributes </h2>
+	<dl class="dl-horizontal">
+	  <% if !@person.documents.empty? %>
+	  	<dt><strong>Documents:</strong></dt>
+	  	<dd><ul class='attributes-list'><% @person.documents.each do |d|  %>
+			<li><%= link_to d.title,d %>--[<%= link_to "download file", d.expert_file_url %>]</li>
+	  		<% end %></ul></dd></br>
+	  <% end %>
+
+	  <% if !@person.addresses.empty? %>
+		  <dt><strong>Addresses:</strong></dt>
+		  <dd><ul class='attributes-list'><% @person.addresses.each do |a| %>
+			<li><% if !a.line_1.blank? %>
+						<%= a.line_1 %></br>
+					<% end %>
+					<%= a.line_2 %></br><%= a.city %>, <%= a.state%></li>
+		
+		  <% end %></ul></dd></br>
+	  <% end %>
+
+	  <% if !@person.contacts.empty? %>
+		  <dt><strong>Contacts:</strong></dt>
+		  <dd><ul class='attributes-list'><% @person.contacts.each do |c| %>
+		 	<li><%= c.contact_string %></li>
+		  <% end %></ul></dd>
+	  <% end %>
+	</dl>
+	<hr>
+<% end %>
+
+<% flash.each do |name, msg|  %>
+  <script type="text/javascript">
+    $(document).ready(function() { status_update('<%= msg %>') });
+  </script>
+<% end %>
+
+<!--h3 class="no-bottom-margin"> Comments </h3>
+<span id="comments_count"><%= pluralize(@comments.count, "Comment") %></span></br>
+<div id="comments">
+  <%= render :partial => @comments, :locals => { :list => true } %>
+</div>
+</br> 
+<div id="comment-notice"></div>
+ 
+<h4>Say something!</h4>
+<%= simple_form_for @comment, :remote => true do |f| %>
+	<%= f.input :comment, input_html: { class: 'comment-box', rows: 6, cols: 100} %>
+	<%= f.hidden_field :commentable_id, :value => @person.id %>
+	<%= f.hidden_field :commentable_type, :value => 'Person' %>
+    <%= f.submit nil, :class => 'btn btn-small' %>
+<% end %>-->
+
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              people_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_person_path(@person), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              person_path(@person),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

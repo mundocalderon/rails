@@ -1,0 +1,2 @@
+$('#activities').html('<%= escape_javascript render :partial => "activities" %>');
+$('#activity-paginator').html('<%= escape_javascript(paginate(@activities, :remote => true, :theme => 'bootstrap_theme').to_s) %>');

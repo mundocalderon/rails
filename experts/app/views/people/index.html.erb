@@ -1,0 +1,43 @@
+<%- model_class = Person -%>
+<div class="page-header">
+  <h1>Experts<%t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<div class="hero-unit">
+	<%= search_form_for @search, :class => 'no-bottom-margin form-inline' do |f| %>
+		<h3 class='no-bottom-margin'>Search by Expert's Name: </h3>
+		<%= f.text_field :first_name_or_last_name_or_nickname_cont, :class => 'no-bottom-margin input-xxlarge' %>
+		<h4 class='no-bottom-margin'> or by Expert's Field of Expertise: </h4>
+		<%= f.collection_select(:credentials_id_eq , Credential.order(:name), :id, :name, {:include_blank => true },{class: 'input-xxlarge'}  ) %>
+		<h4 class='no-bottom-margin'> or by Expert's Specialty: </h4>
+		<%= f.collection_select :specialties_id_eq , Specialty.order(:name), :id, :name,{:include_blank => true },{class: 'input-xxlarge'}  %>
+	    <p class="muted no-bottom-margin">For a different type of search, try the <%= link_to "Advanced Search.", advanced_search_path %>
+		<div class='actions'><%= f.submit "Search", :class => 'btn btn-primary btn-large' %></div>
+	<% end %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link @search, :first_name, model_class.human_attribute_name(:first_name) %></th>
+      <th><%= sort_link @search, :last_name, model_class.human_attribute_name(:last_name) %></th>
+			<th>MI</th>
+	  	<th><%= model_class.human_attribute_name(:specialties) %></th>
+	  	<th>Field of Expertise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= link_to person.first_name, person_path(person) %></td>
+        <td><%= link_to person.last_name, person_path(person) %></td>
+				<td><%= person.middle_initial %></td>
+        <td><ul><% person.specialties.each do |s| %><li><%= s.name %></li><% end %></td>
+        <td><ul><% person.credentials.each do |c| %><li><%= c.name %></li><% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @people %>
+

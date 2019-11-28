@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>California Appellate Project</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" lang="en-us" dir="ltr">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if IE]>
+      <%= stylesheet_link_tag 'iepatch' %>
+    <![endif]-->
+    <!--[if IE 7]>
+      <%= stylesheet_link_tag 'iepatch7' %>
+    <![endif]-->
+    <!--[if IE 6]>
+      <%= stylesheet_link_tag 'iepatch6' %>
+    <![endif]-->
+
+    <%= stylesheet_link_tag 'application', :media => "all", :debug => true %>
+    <%= javascript_include_tag 'application', :debug => true %>
+    <%= csrf_meta_tag %>
+
+    <script type="text/javascript">
+      var RecaptchaOptions = {
+        theme: 'white'
+      };
+    </script>
+
+  </head>
+
+
+	<body>
+	<div id="sub-wrap">
+		
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+		    	<div class="container-fluid">
+		        	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		          		<span class="icon-bar"></span>
+		          		<span class="icon-bar"></span>
+		          		<span class="icon-bar"></span>
+		        	</a>
+		        	<a class="brand" href="#">California Appellate Project</a>
+		        	<div class="nav-collapse">
+								<p class="navbar-text pull-right"><small>Logged in as <%= current_user.email %>.<%= link_to "Log out", destroy_user_session_path, :method => :delete  %></small></p>
+						
+		          	<ul class="nav">
+		            	<% if current_user && current_user.role.eql?("SuperAdmin") %>
+									<li class="dropdown">
+										<%= link_to 'Administrator Links <b class="caret"></b>'.html_safe,"#", :class => "dropdown-toggle", "data-toggle" => "dropdown" %>
+										<ul class="dropdown-menu">
+											<li><%= link_to 'USER LIST', admin_userlist_path %></li>
+									  	<li><%= link_to "NEW ENTRY", new_entry_path %></li>
+									  	<li><%= link_to "NEW BRIEF", new_brief_path %></li>
+									  	<li><%= link_to "NEW PLEADING", new_pleading_path %></li>
+									    <li><%= link_to "ENTRIES LIST", entries_list_path %></li>
+									    <li><% link_to "NEW WIKI PAGE", new_page_path %></li>
+							        <li><% link_to "WIKI PAGES", pages_path %></li>
+									    <li><% link_to "NEW EVENT", new_event_path %></li>
+									    <li><% link_to "CALENDAR VIEW", events_path %></li>
+											<li><%= link_to "SUBCATEGORIES", subcategories_path %></li>
+											<li><%= link_to "CATEGORIES", categories_path %></li>
+											<li><%= link_to "PLEADING CATEGORIES", plead_categories_path %></li>
+											<li><%= link_to "PLEADING KEYWORDS", plead_keywords_path %></li>
+											<li><%= link_to "DPI CHAPTERS", dpi_chapters_path %></li>
+										</ul>
+									</li>
+									<% elsif current_user && current_user.role.eql?("Admin") %>
+										<li><%= link_to "New Entry", new_entry_path  %></li>
+										<li><%= link_to "New Brief", new_brief_path %></li>
+								  	<li><%= link_to "New Pleading", new_pleading_path %></li>
+									<% end %>
+		          	</ul>
+		        	</div>
+		      	</div>
+		    </div>
+		</div>
+		
+		<div class="jumbotron masthead">
+			<div class="container-fluid">
+					<h2><%= params[:category] ? ("#{@category.name}") : (yield :top) %></h2>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row-fluid">
+			
+				<div class="span3">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">							
+							<li class="<%= 'active' if (current_page?(entries_path) && !params.has_key?(:category)) %>"><%= link_to "Home", entries_path %></li>
+							
+							<li class="nav-header">Litigation Tools</li>
+							
+							<li><a id="cat_13" rel="tooltip" data-placement='right' href="/entries?category=13" 
+								title="Taking a California Direct Appeal
+New Case Appointment Material 
+CAP Manual 
+CAP Working Documents 
+Appellate Production Primer 
+CAP's Capital Appellate Seminars 
+CACJ Appellate Seminars 
+Other Appellate Resources">Appellate Practice and Legal Research</a></li>
+									
+							<li><a href="/briefs">Brief Bank</a></li>
+							<li><a href="/pleadings">Sample Pleadings</a></li>
+							
+							<li><a id="cat_15" rel="tooltip" data-placement='right' title="Taking A California Habeas Corpus and Excecutive Clemency Case 
+New Case Appointment Material 
+CAP Manual 
+CAP Working Documents 
+Habeas Production Primer 
+Record Collection Materials 
+Investigating Claims and Developing Mitigation 
+HCRC Materials "href="/entries?category=15">Habeas Practice and Claims</a></li>
+		
+							<li><a id="cat_16" rel="tooltip" data-placement='right' title="Supreme Court Death Penalty Policies 
+Supreme Court Compensation Guidelines 
+Supreme Court Qualification Standards 
+Other Supreme Court Rules 
+Supreme Court Forms 
+Supreme Court Memos, News Releases, Notices to Counsel 
+Supreme Court Practices Resource and Training Materials 
+Helpful Links" href="/entries?category=16">California Supreme Court Practice and Policies</a></li>
+					
+							<li class=""><a href="/entries?category=17">Topics and Keywords</a></li>
+							<li class="nav-header">Additional Resources</li>
+							<li><a  id="cat_19" rel="tooltip" data-placement='right' title="CAP Manual 
+Institutional Failure Project 
+Prison Resource Book 
+RECAP 
+DPI" href="/entries?category=19">CAP Publications</a></li>
+	
+							<li class=""><a href="/cap-library">Library</a></li>
+							<li><a id="cat_21" rel="tooltip" data-placement='right' title="Visiting at San Quenting Directory of People and Contact Information 
+Prison Resource List 
+Updated Condemned Manual 
+Updated Property Matrix 
+Commonly Used Forms 
+Prison Resource Book 
+Institutional Failure Project 
+Client Communication and Care 
+Useful Links for Counsel and Clients 
+Additional Training and Resource Materials 
+Archived Material" href="/entries?category=21">San Quentin and Prison Resources</a></li>
+							
+							<li><a id="cat_22" rel="tooltip" data-placement='right' title="CAP Training Materials 
+HCRC Conference 
+CACJ Training 
+CPDA Training 
+HAT Training
+Airlie Training 
+NACDL Training 
+NDIA Training 
+MCLAP Training 
+Standard of Care Materials" href="/entries?category=22">Training and Standard of Care Resources</a></li>
+							
+							<li class=""><a href="/entries?category=23">Client Profiles</a></li>
+							<li class=""><a href="/experts">Expert Database</a></li>
+							<li> <%= link_to "Advanced Search", advanced_search_path %></li>
+							<li> <% link_to "Browse", search_path %></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="span9">
+					<%= bootstrap_flash %>
+					<div class="row-fluid">
+						<%= yield %>
+						<!-- THE ONLY TIME I WANT THE ACTIVITY FEED TO SHOW UP IS WHEN IN THE INTERNAL HOME SCREEN -->
+						<%= yield :right  if (current_page?(entries_path) && !params.has_key?(:category)) %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sub-push"></div>
+		
+	</div>
+	
+	
+	<div id="sub-footer">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span3"></div>
+				
+				<div class="span3">
+					<h5>ABOUT</h5>
+					<ul class="">
+						<li><%= link_to "About CAP", root_path %></li>
+						<li><%= link_to "Disclosure", disclosure_path %></li>
+						<li><%= link_to "Privacy Policy", privacy_path %></li>
+						<li><%= link_to "Feedback", contact_path %></li>
+					</ul>
+				</div>
+				
+				<div class="span3">
+					<h5>HELP</h5>
+					<ul class="">
+						<li><%= link_to "Helpful Links", root_path %></li>
+						<li><%= link_to "Using New CAP Websites", root_path %></li>
+						<li><%= link_to "Capper Forum", root_path %></li>
+						<li><%= link_to "FAQ", root_path %></li>
+					</ul>
+				</div>
+				
+				<div class="span3">
+					<p class="muted copyright">Copyright &copy;&nbsp; 2012, All Rights Reserved. </p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	</body>
+</html>
+<!--
+		
+<% (Category.all).each do |link| %>
+	<% if link.name.blank? %>
+		<li class="nav-header">Additional Resources</li>
+	<% else %>
+		<li class="<%= 'active' if current_page?(entries_path(:category => "#{link.id}")) %>"> 	
+		<%= link_to "#{link.name}", entries_path(:category => "#{link.id}") %></li>
+	<% end %>
+<% end %>-->

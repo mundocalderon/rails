@@ -1,0 +1,22 @@
+<div id='content-left'>
+  <div id='content-left-in'>
+    <% @pages.each do |page| %>
+      <div class="article box">
+        <div class="article-desc">
+          <h3><%= link_to "#{page.title.titleize}", page %></h3>
+          <p class="info">Published on:  <%= page.created_at.to_formatted_s(:short) %></p>
+          <p class="nomb"><%= page.description.capitalize %></p>
+            
+          <%= link_to 'Show', page %>
+          <%= link_to 'Edit', edit_page_path(page) %>
+          <%= link_to 'Destroy', page, confirm: 'Are you sure?', method: :delete %>
+        </div>
+      </div>
+    <% end %>
+  
+        <br />
+
+        <%= link_to 'New Page', new_page_path %>
+  </div>
+</div>
+

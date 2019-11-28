@@ -1,0 +1,17 @@
+<div id="content-left">  
+  <div id="content-left-in">
+      <h2>Sign up</h2>
+      <%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= f.inputs do %>
+          <%= f.input :email %>
+          <%= f.input :password %>
+          <%= f.input :password_confirmation, :label => "Re-enter Password" %>
+        <% end %>
+        <div class="form-offset"><%= recaptcha_tags :public_key => '6LcZ8dMSAAAAAEKxlmOsAUIhPM3s1oWkGWx_N7QD', :error =>'Bad Recaptcha Solution!'  %></div>
+
+        <%= f.actions do %>
+          <%= f.action :submit, :as => :button, :label =>"Sign Up" %>
+        <% end %>
+      <% end %>
+  </div>
+</div>

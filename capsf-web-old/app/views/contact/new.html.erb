@@ -1,0 +1,22 @@
+<div id="content-left">
+  <div id="content-left-in">
+      <h2>Contact Us</h2>
+        <%= semantic_form_for(@message, :url =>contact_path) do |f| %>
+          <%= f.inputs do %>
+            <%= f.input :name %>
+            <%= f.input :email %>
+            <%= f.input :subject %>
+            <%= f.input :body, :as => :text %>
+          <% end %>
+            <div class='form-offset'>
+              <%= recaptcha_tags :public_key => '6LcZ8dMSAAAAAEKxlmOsAUIhPM3s1oWkGWx_N7QD' %>
+            </div>  
+            
+            <%= f.actions do %>
+              <%= f.action :submit, :as => :button, :label =>"Submit Comments" %>
+            <% end %>
+
+        <% end %>
+
+  </div>
+</div>

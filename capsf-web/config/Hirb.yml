@@ -1,0 +1,14 @@
+:output:
+  User:
+    :options:
+      :fields:
+        -id
+        -email
+        -sign_in_count
+        -current_sign_in_at
+        -last_sign_in_at
+        -confirmed_at
+        -failed_attempts
+        -created_at
+        -updated_at
+        -role

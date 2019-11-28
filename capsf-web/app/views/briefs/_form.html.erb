@@ -1,0 +1,18 @@
+<%= simple_form_for @brief, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.association :brief_court %>
+  <%= f.association :brief_division %>
+  <%= f.association :brief_source %>
+  <%= f.association :brief_type %>
+	<%= f.input :doc, input_html: { class: "input-xxlarge", placeholder:"Document" },  :hint => "document currently associated : #{@brief.doc_url}", label: "Brief File" %>
+  <%= f.input :title %>
+  <%= f.input :date_filed, :as => :string, input_html: { class: "input-xlarge", placeholder: "Date Filed"} %>
+  <%= f.input :isAtkins, inline_label: "Atkins", label: false %>
+  <%= f.input :isExhibit, inline_label: "Exhibit", label: false %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                briefs_path, :class => 'btn' %>
+  </div>
+<% end %>

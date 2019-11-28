@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Artie Gigantino Football Guidance" %></title>
+    <%= csrf_meta_tags %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+
+	<!--div class="navbar-wrapper">
+	  <div class="container">
+	    <div class="navbar navbar-default navbar-static-top">
+      
+	        <div class="navbar-header">
+			
+	        <a class="navbar-brand pull-right" href="#">Artie Gigantino Football Guidance</a>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          
+	        </div>
+
+	    </div>
+	  </div><!-- /container -->
+	</div--><!-- /navbar wrapper -->
+
+    <header class="header-image">
+	    <div class="pixel-overlay"></div>
+        <div class="headline">
+            <div class="container">
+                <h1>Guidance For Your</h1>
+				<h1>Football Future</h1>
+				<p class="lead">- Evaluations - Position Training - Safe Tackling Techniques - Scholarship Advising -</p>
+				<a class="btn btn-primary btn-lg" href="mailto:artiesports@yahoo.com">Start Today »</a>
+            </div>
+        </div>
+		
+    </header>
+
+
+
+
+	<!-- Marketing messaging and featurettes
+	================================================== -->
+	<!-- Wrap the rest of the page in another container to center all the content. -->
+
+	<div class="container marketing">
+	  <!-- START THE FEATURETTES -->
+
+	  <hr class="featurette-divider">
+
+	  <div class="featurette">
+	    <img class="featurette-image img-circle pull-right" src="/images/artie_512.jpg">
+	    <h2 class="featurette-heading">Artie Gigantino<br> 
+			<span class="glyphicon glyphicon-phone-alt"></span>
+			<span class="text-muted">(925)209-9465</span>
+			<a href="mailto:artiesports@yahoo.com">artiesports@yahoo.com</a></h2>
+	    <p class="lead">Artie provides each Athlete and Family with honest, candid, realistic and professional evaluations and guidance. He offers experienced Consultation and Recommendations in all area’s of football, on and off the playing field. In addition, Artie has friendships with many Colleges across the country and almost every West Coast football playing college.</p>
+	  </div>
+	
+	  <hr class="featurette-divider">
+
+	  <!-- Three columns of text below the carousel -->
+	  <div class="row">
+	    <div class="col-md-4 text-center">
+	      <img class="img-circle" src="/images/raiders.jpg">
+	      <h2>Oakland Raiders</h2>
+	      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	      <p><a class="btn btn-default" href="http://www.raiders.com">View details »</a></p>
+	    </div>
+	    <div class="col-md-4 text-center">
+	      <img class="img-circle" src="/images/rams.jpg">
+	      <h2>St. Louis Rams</h2>
+	      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	      <p><a class="btn btn-default" href="http://www.stlouisrams.com">View details »</a></p>
+	    </div>
+	    <div class="col-md-4 text-center">
+	      <img class="img-circle" src="/images/usc.png">
+	      <h2>USC Trojans</h2>
+	      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+	      <p><a class="btn btn-default" href="http://www.usc.edu">View details »</a></p>
+	    </div>
+	  </div><!-- /.row -->
+
+
+
+
+	  <hr class="featurette-divider">
+
+	  <div class="featurette">
+	    <img class="featurette-image img-circle pull-left" src="/images/ag_logo.jpg">
+	    <h2 class="featurette-heading">Smaller Footprint. <span class="text-muted">Lightweight.</span></h2>
+	    <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+	  </div>
+
+
+	  <!-- /END THE FEATURETTES -->
+
+
+	  <!-- FOOTER -->
+	  <footer>
+		 <hr>
+		<p class="pull-left">Copyright 2014 AG Football</p>
+	    <p class="pull-right"><a href="#">Back to top</a></p>
+	  </footer>
+
+	</div><!-- /.container -->
+
+  </body>
+</html>

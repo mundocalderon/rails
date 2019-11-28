@@ -1,0 +1,11 @@
+<dl class="news box">
+  <dt><%= a.created_at.strftime("%b") %><br><%= a.created_at.strftime("%d") %></dt>
+  
+  <dd>  
+  <span><%= link_to "#{a.text}", "uploads/#{p[:doc_url].to_s}" %> </span><br>
+  A user has updated a <%= p[:description] %> that is filed in <%= p[:categories] %>. 
+  File is titled <%= link_to "#{p[:title]}", "uploads/#{p[:doc_url].to_s}" %> and authored by <%= p[:author] %>
+    <hr>
+  </dd>
+
+</dl>

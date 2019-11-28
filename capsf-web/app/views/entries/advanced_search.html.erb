@@ -1,0 +1,25 @@
+<h2>Document Search</h2>	      
+<%= simple_form_for :query,  url: advanced_search_path , :method => :get, :html => { :class => 'form-inline'} do |f| %>
+  <%= f.input :query, input_html: { class: "span8 no-bottom-margin", placeholder: "Search for a document by title, author, in-file text, etc.", :autocomplete => "off" }, label: false, :autofocus => true %>
+  <%= f.submit "Search", :class => 'btn btn-primary btn-large' %>
+	<%= link_to "Reset Search", advanced_search_path, :class => 'btn btn-link' %>
+
+<% end %>
+			
+
+<table class="table table-striped ">
+  <tbody>
+		<% @entries.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.title, entry_path(entry) %></td>
+				<td><%= entry.author %></td>
+				<td><%= entry.document_date.try(:strftime, '%B %d, %Y') %></td>
+        <td><%= link_to "Download", entry.doc_url if !entry.doc_url.blank? %><%= link_to "Exernal Website", entry.external_website, target: "_blank"if !entry.external_website.blank? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @entries %>
+
+

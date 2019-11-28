@@ -1,0 +1,35 @@
+<div class='col-md-8'>
+	<%= simple_form_for @gig,
+	wrapper_mappings: {
+	  check_boxes: :vertical_radio_and_checkboxes,
+	  radio_buttons: :vertical_radio_and_checkboxes,
+	  file: :vertical_file_input,
+	  boolean: :vertical_boolean
+	} do |f| %>
+	<div class="row">
+		 <div class="col-xs-4">
+			  <%= f.input :date, :as => :string, input_html:{ class:'ui-datepicker' }%>
+	  	 </div>
+		 <div class="col-xs-8">
+			   
+		 </div>
+  	</div>
+	<div class="row">
+		 <div class="col-xs-6">
+	  	   <%= f.input :venue, label:"Venue Name" %>
+  	  	 </div>
+		 <div class="col-xs-6">
+			 <%= f.input :location %>		   
+		 </div>
+  	</div>
+
+	  <%= f.input :details, input_html:{ rows:'10' } %>
+	  <%= f.input :link, :hint => "Add link to Venue's Website or to Ticket Vendor." %>
+	  <%= f.association :gig_types, as: :check_boxes %>
+
+	  <%= f.button :submit, :class => 'btn-primary' %>
+	  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                gigs_path, :class => 'btn btn-default' %>
+	<% end %>
+</div>
+

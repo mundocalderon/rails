@@ -1,0 +1,18 @@
+<div id="content-left">
+  <div id="content-left-in">
+        <h2>Edit User</h2>
+
+        <%= semantic_form_for(@user, :url => admin_update_user_path ) do |f| %>
+          <%= f.inputs do %>
+            <%= f.input :email %>
+            <%= f.input :role, :as => :radio, :collection => ["Admin", "User"] %>
+          <% end %>
+          <%= f.actions do%>
+            <%= f.action :submit, :as => :button, :label => "Update" %>
+          <% end %>
+        <% end %>
+
+        <%= link_to 'Back', admin_userlist_path %>
+  </div>
+</div>
+

@@ -1,0 +1,60 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.jumbotron {
+	margin-top:20px;
+}
+
+.jumbotron h1 {
+	margin:0 0;
+	line-height:.75;
+}
+
+hr {
+	margin:3px 0;
+}
+
+.jumbotron h2{
+	margin: 10px 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding: 15px;
+
+}
+
+
+
+@media (max-width:450px){
+	.jumbotron h1{
+		font-size:30px;
+	}
+
+	.jumbotron h2{
+		font-size:20px;
+	}
+}

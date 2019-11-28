@@ -1,0 +1,12 @@
+<dl class="news box">
+  <dt><%= a.created_at.strftime("%b")%><br><%= a.created_at.strftime("%d")%> </dt>
+  
+  <dd>  
+  <span><%= a.text %></span><br>
+  A user has deleted a file that was in <%= p[:categories]%>. 
+  File is title <%= p[:title] %> and authored by <%= p[:author] %>
+    <hr>
+  </dd>
+
+</dl>
+

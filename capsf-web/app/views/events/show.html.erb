@@ -1,0 +1,48 @@
+<div id="content-left">
+  <div id="content-left-in">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <b>Name:</b>
+      <%= @event.name %>
+    </p>
+
+    <p>
+      <b>Document:</b>
+      <%= link_to @event.attachment_name, @event.attachment_url %>
+
+    <p>
+      <b>Description:</b>
+      <%= @event.description %>
+    </p>
+
+    <p>
+      <b>Event type:</b>
+      <%= @event.event_type %>
+    </p>
+
+    <p>
+      <b>Host:</b>
+      <%= @event.host %>
+    </p>
+
+    <p>
+      <b>Published:</b>
+      <%= @event.published %>
+    </p>
+
+    <p>
+      <b>Start date:</b>
+      <%= @event.start_date %>
+    </p>
+
+    <p>
+      <b>End date:</b>
+      <%= @event.end_date %>
+    </p>
+
+
+    <%= link_to 'Edit', edit_event_path(@event) %> |
+    <%= link_to 'Back', events_path %>
+  </div>
+</div>

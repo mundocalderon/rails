@@ -1,0 +1,16 @@
+<h2>Change your password</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
+	<%= devise_error_messages! %>
+  	<div class="form-inputs">
+    	<%= f.input :reset_password_token, :as => :hidden %>
+    	<%= f.input :password %>
+    	<%= f.input :password_confirmation %>
+  	</div>
+  	<div classs="form-actions">
+    	<%= f.button :submit, :class => 'btn-primary', :label => 'Change Password' %>
+  	</div>
+<% end %>
+
+<%= render "links" %>
+

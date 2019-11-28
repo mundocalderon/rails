@@ -1,0 +1,10 @@
+<%= simple_form_for @subcategory, :html => { :class => 'form-vertical' } do |f| %>
+  <%= f.input :name, input_html: { class: "input-block-level", placeholder: "Subcategory Name" } %>
+  <%= f.input :description, :as => :text, input_html: { rows: 8, class: "input-block-level", placeholder: "Subcategory Description" }%>
+  <%= f.association :category, input_html: { class: "input-xxlarge"}, label: "Parent Category", placeholder: "Parent Category"%>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                subcategories_path, :class => 'btn' %>
+  </div>
+<% end %>

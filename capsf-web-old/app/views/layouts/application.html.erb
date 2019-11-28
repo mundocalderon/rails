@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>California Appellate Project</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" lang="en-us" dir="ltr">
+    <meta name="author" content="Raymond Calderon">
+
+    <%= stylesheet_link_tag 'application', :debug => true %>
+    <%= javascript_include_tag 'application', :debug => true %>
+    <%= csrf_meta_tag %>
+
+    <link href="/favicon.ico" type="image/x-icon" title="favicon" rel="shortcut icon">
+
+    <!--[if IE]>
+      <%= stylesheet_link_tag 'iepatch' %>
+    <![endif]-->
+    <!--[if IE 7]>
+      <%= stylesheet_link_tag 'iepatch7' %>
+    <![endif]-->
+    <!--[if IE 6]>
+      <%= stylesheet_link_tag 'iepatch6' %>
+    <![endif]-->
+
+    <% flash.each do |name, msg|  %>
+      <script type="text/javascript">
+        $(document).ready(function() { status_update('<%= msg %>') });
+      </script>
+    <% end %>
+
+    <script type="text/javascript">
+      var RecaptchaOptions = {
+        theme: 'white'
+      };
+    </script>
+
+  </head>
+
+
+<body>
+<div id="main">
+  <div id="header"> 
+    <h1 id="logo"><span class="logo"><%= link_to "", root_path %></span></h1>
+    <hr class="noscreen" />
+
+  </div>
+
+  <div id="tray"> 
+    <% if current_user && current_user.role.eql?("Admin") %>
+      <%= link_to "Administrator Links", admin_links_path %>
+    <% end %>
+    
+    <% if  user_signed_in? %>
+      Logged in as <%= current_user.email %>.
+      <%= link_to "Log out", destroy_user_session_path, :method => :delete  %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> or
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+
+    <hr class="noscreen" />
+  </div>
+
+  <div id="cols" class="box">
+
+    <div id="content">
+      <%= yield %>
+      <%= yield :right %>
+    </div>
+
+    <div id="aside"> 
+      <div id="aside-top"></div>
+
+      <div class="padding">
+        <h4 class="nom">Navigate:</h4>
+      </div>
+
+      <% if user_signed_in? %>
+        <ul class="nav">
+          <% (Category.all).each do |link| %>
+            <li><%= link_to "#{link.name}", entries_path(:category =>"#{link.slug}") %></li>
+          <% end %>
+          <li> <%= link_to "Brief Bank", entries_path(:category => "briefbank") %></li>
+          <li> <% link_to "Browse", search_path %></li>
+        </ul>
+
+        <div class="pad">
+          <ul class="nav-search">
+            <li> <%= link_to "Advanced Search", advanced_search_path %></li>
+          </ul>
+        </div>
+          
+          <!--li><%= link_to "News Updates", root_path %></li>
+          <li> <%= link_to "CAP", entries_path(:category =>"starting") %></li>
+          <li> <%= link_to "Using the CAP Website", entries_path(:category =>"records") %></li>
+          <li> <%= link_to "Website Map", entries_path(:category => "pleadings") %></li>
+          <li> <%= link_to "CAP News and Website Updates", entries_path(:category => "investigating") %></li>
+          <li> <%= link_to "CAP Wiki", entries_path(:category => "briefbank") %></li>
+          <li> <%= link_to "State Habeas Practice", entries_path(:category => "federal") %></li>
+          <li> <%= link_to "Appellate Practice", entries_path(:category => "administrative") %></li>
+          <li> <%= link_to "Specialty Areas", entries_path(:category => "administrative") %></li>
+          <li> <%= link_to "Late State/Clemency", entries_path(:category => "administrative") %></li>
+          <li> <%= link_to "CAP Publications", entries_path(:category => "administrative") %></li>
+          <li> <%= link_to "San Quentin and Prison Resources", entries_path(:category => "administrative") %></li>
+          <li> <%= link_to "CA Supreme Court", entries_path(:category => "administrative") %></li>
+          <li> <%= link_to "Training", entries_path(:category => "administrative") %></li-->
+       
+        
+        </ul>
+      <% else %>
+        <ul class="nav">
+          <li> <%= link_to "Home", root_path %></li>
+          <li> <%= link_to "Login", new_user_session_path %></li>
+          <li> <%= link_to "Information", info_path%></li>
+          <li> <%= link_to "Employment", employment_path%></li>
+          <li> <%= link_to "Contact", contact_path %></li>
+          <li> <%= link_to "Register", new_user_registration_path %></li>
+        </ul> 
+      <% end %>
+    </div>
+
+    <div id="aside-bottom"></div>
+  </div>
+ 
+
+  <div id="footer">
+    <p class="f-right"><%= link_to "Disclosure", disclosure_path %> <%= link_to "Privacy Policy", privacy_path%>  </p>
+    <p>Copyright &copy;&nbsp; 2012, All Rights Reserved. </p>
+  </div>
+
+</div>
+
+
+</body>
+</html>

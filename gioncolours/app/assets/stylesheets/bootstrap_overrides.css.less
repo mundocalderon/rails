@@ -1,0 +1,120 @@
+// This bit is to push down body content so that the navbar isn't cutting it off
+body {
+//  padding-top: 55px;
+
+}
+
+footer{
+	padding-top:450px;
+}
+
+.home-image-center img{
+    margin:auto;
+	display:block;
+}
+
+.spacing-container{
+	padding-top:25px;
+	padding-bottom:25px;
+}
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
+
+// css-trick that forces embedded videos to be responsive
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+
+.video-container iframe,  
+.video-container object,  
+.video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+//centering navbar content
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}
+// announcement thumbnails with overlay
+.announcement-thumbnail{
+position: relative;
+overflow: hidden;
+text-align: center;
+max-height: 600px;
+min-height: 260px;
+}
+
+.announcement-img{
+	margin:auto;
+}
+.dl-horizontal dd {
+  min-height: 20px;
+}
+
+//removing bottom margin
+.no-bottom-margin{
+	margin-bottom:0px;
+}
+
+// Alert boxes don't need a bottom margin
+.alert {
+	margin-bottom:0px;
+	position:fixed;
+	z-index:100;
+}
+
+//Header
+.headline {
+    background:rgba(56, 56, 56, 0.38);
+    padding: 80px 0;
+	position: relative;
+	color: rgb(248, 248, 248);
+}
+
+.headline h1 {
+    font-size: 100px;
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.headline h2 {
+    font-size: 57px;
+	color:rgb(248, 248, 248);
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+
+}
+.header-image {
+    width: 100%;
+	height:100%;
+    text-align: center;
+    background: url('/images/stella_jumbo.JPG') no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    position: relative;
+    display: inline-block;
+}
+.pixel-overlay {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background: url('/images/shade.png'); /* or any other overlay image/color */
+}

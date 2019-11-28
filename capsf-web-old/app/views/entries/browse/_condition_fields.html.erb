@@ -1,0 +1,10 @@
+<h4>Search Conditions:</h4>
+<div class="search-field">
+  <%= f.attribute_fields do |a| %>
+    <%= a.attribute_select associations: [:categories, :subcategories] %>
+  <% end %>
+  <%= f.predicate_select %>
+  <%= f.value_fields do |v| %>
+    <%= v.text_field :value %>
+  <% end %>
+</div>

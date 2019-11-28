@@ -1,0 +1,10 @@
+<dl class="activity-box">
+  <dt><p><%= a.created_at.strftime("%b")%> <%= a.created_at.strftime("%d")%></p></dt>
+  
+  <dd>  
+  <b><%= link_to "#{a.text}", "events/#{a.trackable_id}" %></b><br>
+  A user has updated <%= p[:description] %> titled "<%= link_to p[:title], "events/#{a.trackable_id}" %>". 
+  It is scheduled for <%= p[:date].strftime("%B %d, %Y") %>.
+  </dd>
+  <hr>
+</dl>

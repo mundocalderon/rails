@@ -1,0 +1,9 @@
+<%= simple_form_for @plead_keyword, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                plead_keywords_path, :class => 'btn' %>
+  </div>
+<% end %>

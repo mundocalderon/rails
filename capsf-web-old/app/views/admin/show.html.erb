@@ -1,0 +1,20 @@
+<div id="content-left">
+  <div id="content-left-in">
+    <h2>User Profile</h2>
+        <p id="notice"><%= notice %></p>
+
+        <p>
+        <b>Email:</b>
+        <%= @user.email %><br>
+        <b>Role:</b>
+        <%= @user.role %><br>
+        <b>Created Date:</b>
+        <%=  @user.created_at.strftime('%B %d, %Y') %>
+        </p>
+
+
+        <%= link_to 'Edit', admin_edit_user_path(@user) %> |
+        <%= link_to 'Back', admin_userlist_path %>
+  </div>
+</div>
+

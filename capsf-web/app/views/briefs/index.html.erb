@@ -1,0 +1,91 @@
+<%- model_class = Brief -%>
+
+<% content_for :top do %>
+	  <h2>Brief Bank</h2>
+<% end %>
+<h3>Brief Bank Search:</h3>
+<%= simple_form_for :query,  url: briefs_search_path , :method => :get, :html => { :class => 'form-search'} do |f| %>
+  <%= f.input :query, :input_html => { class: "span7 search-query", 
+																				placeholder: "Search for a brief by Name of Defendant, Brief Type, Source, etc.", :autocomplete => "off" }, label: false, :autofocus => true %>
+  <%= f.submit "Search Brief Bank", :class => 'btn' %>
+	<%= link_to "Reset Search", briefs_path, :class => 'btn btn-link' %>
+<% end %>
+
+<!-- THIS IS IS THE RANSACK SEARCH CODE, CURRENTLY NOT IN USE BUT I SUSPECT THEY WILL WANT IT. br>
+<div>
+<%= search_form_for @q, :builder => SimpleForm::FormBuilder, url: briefs_ransack_path, :html => {:class => 'form-search'} do |f| %>
+	<%= f.label "First Name" %>
+	<%= f.text_field :first_name_cont %>
+	<br>
+	<%= f.label "Last Name"%>
+	<%= f.text_field :last_name_cont %>
+	<br>
+	<%= f.label "Brief Category"%>
+	<%= f.text_field :title_cont %>
+	<br>
+	<%= f.label "Court" %>
+	<%= f.collection_select :brief_court_id_eq , BriefCourt.order(:name), :id, :name, {:include_blank => true, placeholder:"Court" },{class: 'input-large'} %>
+	<br>
+	<%= f.label "Division" %>
+	<%= f.collection_select :brief_division_id_eq , BriefDivision.order(:name), :id, :name,{:include_blank => true },{class: 'input-large'}  %>
+	<br>
+	<%= f.label "Source" %>
+	<%= f.collection_select :brief_source_id_eq , BriefSource.order(:name), :id, :name,{:include_blank => true },{class: 'input-large'}  %>
+	<br>
+	
+	<%= f.label "Atkins" %>
+	<%= f.check_box :isAtkins_true %>
+
+	<%= f.label "Exhibit" %>
+	<%= f.check_box :isExhibit_true%>
+	<br>
+	<%= f.submit "Search" , :class => "btn"%> 
+<% end %>
+</div>-->
+
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+	    <th><%= model_class.human_attribute_name(:last_name) %></th>
+      <th><%= model_class.human_attribute_name(:first_name) %></th>
+      <th><%= model_class.human_attribute_name(:court_id) %></th>
+      <th><%= model_class.human_attribute_name(:division_id) %></th>
+      <th><%= model_class.human_attribute_name(:source_id) %></th>
+      <th><%= model_class.human_attribute_name(:brief_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:date_filed) %></th>
+			<th>Brief Download</th>
+			<% if current_user.super_admin? %>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+			<% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @briefs.each do |brief| %>
+      <tr data-provides="rowlink">
+	      <td><%= link_to brief.last_name, brief_path(brief), :class => 'rowlink' %></td>
+        <td><%= brief.first_name %></td>
+        <td><%= brief.brief_court_name %></td>
+        <td><%= brief.brief_division_name %></td>
+        <td><%= brief.brief_source_name %></td>
+        <td><%= brief.title %></td>
+        <td><%= brief.date_filed %></td>
+				<td><%= link_to "Download", brief.doc_url.to_s%>
+					<% if current_user.super_admin? %>
+        <td class="span3 nolink">
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_brief_path(brief), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      brief_path(brief),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+				  <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @briefs %>
+

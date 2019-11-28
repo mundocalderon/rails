@@ -1,0 +1,151 @@
+
+<!--div class="header-image">
+	<div class="pixel-overlay"></div>
+	<img width="100%"  src="/images/colours.JPG">
+	<!--div class="headline">
+		<h1>Joel Gion</h1>
+	</div>
+</div-->
+
+<div class="container">
+	<div class="home-image-center"><a href="/"><img class="img-responsive" src="/images/tpc_logo.jpg"></a></div>
+</div>
+
+<div class="container">
+	<hr>
+	<span class="glyphicon glyphicon-comment"></span> <!-- NEWS -->
+	<div class="row">
+		<div class="col-xs-4">	
+			<div class="announcement-thumbnail">
+				<%= link_to (image_tag @announcements[0].attachment.url(:thumb), :class => "announcement-img img-responsive"), @announcements[0] %>
+				<div class="img-title">
+					<h5><%= link_to @announcements[0].title, @announcements[0] %></h5>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4">	
+			<div class="announcement-thumbnail">
+				<%= link_to (image_tag @announcements[1].attachment.url(:thumb), :class => "announcement-img img-responsive"), @announcements[1] %>
+				<div class="img-title">
+					<h5><%= link_to @announcements[1].title, @announcements[1] %></h5>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4">	
+			<div class="announcement-thumbnail">
+				<%= link_to (image_tag @announcements[2].attachment.url(:thumb), :class => "announcement-img img-responsive"), @announcements[2] %>
+				<div class="img-title">
+					<h5><%= link_to @announcements[2].title, @announcements[2] %></h5>
+				</div>
+			</div>
+		</div>
+	</div><!--/row /news -->
+	
+	
+	<hr>
+	<span class="glyphicon glyphicon-calendar"></span> <!-- SHOWS -->
+	<div class="row">
+    	<div class="col-md-12">
+
+			<table class="table table-bordered">
+			  <thead>
+			    <tr>
+			      <th>Date </th>
+			      <th>Location </th>
+			      <th>Venue </th>
+			      <th>Details </th>
+				  
+			    </tr>
+			  </thead>
+			  	<% if !@gigs.empty? %>
+			  	<tbody>
+				    <% @gigs.each do |gig| %>
+				      <tr>
+				        <td class="col-xs-2"><%= link_to gig.date.strftime("%m/%d/%Y"), gig %></td>
+				        <td class="col-xs-2"><%= gig.location %></td>
+				        <td class="col-xs-2"><%= if !gig.link.blank? then link_to gig.venue,url_with_protocol(gig.link), :target => :blank else gig.venue end %></td>
+				        <td class="col-xs-6"><%= gig.details %> <%= if gig.with_tpc? then image_tag "/images/swirl-icon.png", :class => "responsive-img" end %> </td>
+					
+				      </tr>
+				    <% end %>
+			  </tbody>
+
+			</table>
+		  <% else %>
+		  </table>
+		  <p>No Upcoming Dates</p>
+		  <% end %>
+		</div>
+	</div><!--/row /shows -->
+	
+	<hr>
+	<span class="glyphicon glyphicon-film"></span> <!-- VIDEOS -->
+	<% @videos.each do |vid| %>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="video-container">
+				<iframe src="https://www.youtube.com/embed/<%= youtube_id(vid.video_url) %>" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+	    <div class="col-xs-12">
+			  <h1><%= vid.title %></h1>
+			  <p><%=raw vid.description%></p>
+		</div>
+	</div>
+	<div class="spacing-container"></div>
+	
+	<% end %>
+	<!-- /Videos -->
+	
+	<hr>
+	<span class="glyphicon glyphicon-shopping-cart"></span> <!-- STORE -->
+		<div class="row">
+			<div class="col-xs-2">
+				<div class="store-img"><%= link_to (image_tag "apple_bonkers.jpg", :class => "img-responsive"), "http://goingion.tictail.com/product/joel-gion-7-overthrow-night-of-the-living-deadbeats" %></div>
+			</div>
+			<div class="col-xs-2">
+				<div class="store-img"><%= link_to (image_tag "apple_bonkers.jpg", :class => "img-responsive"), "http://goingion.tictail.com/product/joel-gion-7-overthrow-night-of-the-living-deadbeats" %></div>
+			</div>
+			<div class="col-xs-2">
+				<div class="store-img"><%= link_to (image_tag "apple_bonkers.jpg", :class => "img-responsive"), "http://goingion.tictail.com/product/joel-gion-7-overthrow-night-of-the-living-deadbeats" %></div>
+			</div>
+			<div class="col-xs-2">
+				<div class="store-img"><%= link_to (image_tag "apple_bonkers.jpg", :class => "img-responsive"), "http://goingion.tictail.com/product/joel-gion-7-overthrow-night-of-the-living-deadbeats" %></div>
+			</div>
+			<div class="col-xs-2">
+				<div class="store-img"><%= link_to (image_tag "apple_bonkers.jpg", :class => "img-responsive"), "http://goingion.tictail.com/product/joel-gion-7-overthrow-night-of-the-living-deadbeats" %></div>
+			</div>
+			<div class="col-xs-2">
+				<div class="store-img"><%= link_to (image_tag "apple_bonkers.jpg", :class => "img-responsive"), "http://goingion.tictail.com/product/joel-gion-7-overthrow-night-of-the-living-deadbeats" %></div>
+			</div>
+		</div>
+		<!-- /STORE -->
+	
+	<hr>
+    <div class="row">
+      <div class="col-md-12">
+  		<address>
+  			<strong>jOeL</strong><br>
+  			<a href="mailto:joelgionprimarycolours@gmail.com">joelgionprimarycolours@gmail.com</a>
+  		</address>
+
+  		<address>
+  			<strong>JG & The Primary Colours</strong><br>
+  			<a href="https://www.facebook.com/messages/1390547224522132">Facebook</a>
+  		</address>
+        </div>
+      </div><!--/row-->
+
+
+	
+</div> <!-- /container -->
+
+
+
+
+
+
+

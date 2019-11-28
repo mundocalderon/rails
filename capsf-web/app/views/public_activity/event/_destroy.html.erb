@@ -1,0 +1,10 @@
+<dl class="activity-box">
+  <dt><p><%= a.created_at.strftime("%b")%> <%= a.created_at.strftime("%d")%></p></dt>
+  
+  <dd class="muted">  
+  <b><%= a.text %></b><br>
+  A user has canceled an event titled <%= p[:title] %> and hosted  by <%= p[:host] %>
+  </dd>
+<hr>
+</dl>
+

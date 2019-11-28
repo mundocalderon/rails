@@ -1,0 +1,89 @@
+<h2> Expert Profile </h2>
+<%= simple_nested_form_for @person, :html => { :class => 'form-horizontal' } do |f| %>
+	<% f.input :suffix, input_html: { maxlength: 3, class: 'input-mini'} %>
+	<%= f.input :first_name %>
+	<%= f.input :last_name %>
+	<%= f.input :middle_initial, input_html: { maxlength: 1, class: 'input-mini' } %>
+	<%= f.input :date_of_birth, as: :string %>
+	<%= f.input :date_of_death, as: :string %>
+	<%= f.input :spanish_speaking, :label => false, :inline_label => true, as: :boolean %>
+
+	<%= f.input :nickname, as: :string, hint: 'If there is more than one, please separate using a comma.', input_html: { class: 'input-xlarge' }, label: 'Nicknames/AKA' %>
+	<%= f.input :tax_id , label: "Tax ID"%>
+	<%= f.input :license %>
+	<%= f.input :status, as: :select, collection: [ "Active", "Inactive/Retired", "Deceased", "Unknown" ], include_blank: false %>
+<hr>
+<h2> Expert Address Information </h2>
+	<%= f.simple_fields_for :addresses do |a| %>
+		<fieldset>
+		<%= a.input :line_1, label: "Address", input_html: {placeholder: "Line 1"} %>
+		<%= a.input :line_2, label: false, input_html: { placeholder: "Line 2" }%>
+		<%= a.input :city %>
+		<%= a.input :state, as: :select, input_html: { class: 'input-mini' }, collection: ["AL","MT","AK","NE","AZ","NV","AR","NH","CA","NJ","CO","NM","CT","NY","DE",
+		"NC","FL","ND","GA","OH","HI","OK","ID","OR","IL","PA","IN","RI","IA","SC","KS","SD","KY",
+		"TN","LA","TX","ME","UT","MD","VT","MA","VA","MI","WA","MN","WV","MS","WI","MO","WY"] %>
+		<%= a.input :zip_code,  %>
+		<%= a.input :addr_status, as: :select, collection: ["Active", "Inactive"], input_html: { class: 'input-small'} %>
+		<% a.input :active_date_from %>
+		<% a.input :active_date_to %>
+		<%= a.input :county, as: :select, collection: t(:'simple_form.counties')  %>
+		<%= a.hidden_field :_destroy %>
+		<!--%= a.hidden_field :_destroy %><% link_to "Remove above Address", "#", class: "remove_fields btn btn-danger" %>-->
+		<div class="controls"><%= a.link_to_remove "Remove Address", class: "btn btn-danger" %></div></br>
+		</fieldset>
+	<% end %>	
+	<p><%= f.link_to_add "Add a Address", :addresses, class: "btn btn-primary" %></p>
+<h4> Expert Telephone and Email Information </h4>
+	<%= f.simple_fields_for :contacts do |c| %>
+		<fieldset>
+		<%= c.input :contact_string, label: Contact %>
+		<%= c.input :contact_type, as: :select, collection: ["Email","Phone Number", "Website"] %>
+		<%= c.input :note, input_html: { rows: 4, placeholder: 'Any notes about the contact information?'  } %>
+		<%= c.hidden_field :_destroy %>
+		<!--%= c.hidden_field :_destroy %><% link_to "Remove above Contact", "#", class: "remove_fields btn btn-danger" %>-->
+		<div class="controls"><%= c.link_to_remove "Remove Contact", class: "btn btn-danger" %></div></br>
+		</fieldset>
+	<% end %>
+	<p><%= f.link_to_add "Add a Contact", :contacts, class: "btn btn-primary" %></p>
+<hr>
+
+<h2> Expert Type </h2>
+	<%= f.association :case_roles, as: :check_boxes, label_method: :role %>
+	<%= f.association :specialties %>
+	<%= f.association :credentials, label: "Field of Expertise, Credentials, Licenses, Degrees, etc." %>
+<hr>
+
+<h2> Expert Document Information </h2>
+	<%= f.simple_fields_for :documents, :html => {:multipart => true} do |d| %>
+		<fieldset>
+		<%= d.input :title, label: "Document Title" %>
+		<%= d.input :date_of_file, as: :string, input_html: { class: "date" } %>		    
+		<%= d.input :document_type, as: :select, collection: t(:'simple_form.document_types') %>
+		<%= d.input :case, as: :select, label: "Associated Case", collection: t(:'simple_form.cases') %>	
+		<%= d.input :county, as: :select, collection: t(:'simple_form.counties') %>	    
+		<%= d.input :description, as: :text, input_html: { rows: 4, placeholder: 'Any notes about this document?' } %>	
+		<%= d.input :confidential_item, :label => false, :inline_label => "Is this Confidential Material?", as: :boolean %>	    
+		<% if d.object.new_record? %> 
+			<%=	d.input :expert_file %>
+		<% else %>
+		<%= d.label "Currently Attached"%>
+		<div class="controls">
+		<%= d.object.expert_file_identifier %>
+		</div></br>
+		<% end %>
+		<%= d.hidden_field :expert_file_cache %>
+		<div class="controls"><%= d.link_to_remove "Remove Document", class: "btn btn-danger" %></div></br>
+		</fieldset>
+	<% end %>
+	<p><%= f.link_to_add "Add a Document", :documents, class: "btn btn-primary" %></p>
+<hr>
+<h2> Expert Confidential Information </h2>
+	<%= f.input :hidden_note, hint: 'This will not be visible to the public.', input_html: { rows: 5, class: "input-xxlarge" } %>
+
+
+<div class="form-actions">
+	<%= f.submit nil, :class => 'btn btn-primary' %>
+	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+          people_path, :class => 'btn' %>
+</div>
+<% end %>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="533px" height="533px" viewBox="0 4.7 533 533" overflow="visible" enable-background="new 0 4.7 533 533"
+	 xml:space="preserve">
+<defs>
+</defs>
+<rect x="15" y="19.2" fill="none" stroke="#000333" stroke-width="30" stroke-miterlimit="10" width="503" height="503"/>
+<line fill="none" stroke="#000333" stroke-width="20" stroke-miterlimit="10" x1="266" y1="19.2" x2="266" y2="522.2"/>
+<line fill="none" stroke="#000333" stroke-width="20" stroke-miterlimit="10" x1="15" y1="271.2" x2="518" y2="271.2"/>
+<text transform="matrix(1 0 0 1 13.5566 257.292)" fill="#000333" stroke="#000000" stroke-miterlimit="10" font-family="'TrajanPro-Bold'" font-size="293.4763">C</text>
+<text transform="matrix(1 0 0 1 291.9346 262.1235)" fill="#000333" stroke="#000000" stroke-miterlimit="10" font-family="'TrajanPro-Bold'" font-size="293.9">A</text>
+<text transform="matrix(1 0 0 1 31.9062 507.6333)" fill="#000333" stroke="#000000" stroke-miterlimit="10" font-family="'TrajanPro-Bold'" font-size="302.4104">P</text>
+<text transform="matrix(1 0 0 1 378.1318 499.3149)" fill="#FFF0A5" stroke="#000333" stroke-miterlimit="10" font-family="'TrajanPro-Bold'" font-size="113.8622" letter-spacing="-13">SF</text>
+</svg>

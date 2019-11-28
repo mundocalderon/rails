@@ -1,0 +1,52 @@
+// Place all the styles related to the search_suggestions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none outside none;
+  margin: 2px 0 0;
+  min-width: 160px;
+  padding: 5px 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px 4px 4px 4px;
+  cursor: default;
+  background-clip: padding-box;
+  background-color: #FFFFFF;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  float: left;
+  left: 0;
+  top: 100%;
+  margin-top: 2px;
+  z-index: 1051;
+
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      clear: both;
+      color: #333333;
+      display: block;
+      font-weight: normal;
+      line-height: 20px;
+      padding: 3px 20px;
+      white-space: nowrap;
+    }
+    .ui-state-hover, .ui-state-active, .ui-state-focus {
+      background-color: #0081C2;
+      background-image: linear-gradient(to bottom, #0088CC, #0077B3);
+      background-repeat: repeat-x;
+      color: #FFFFFF;
+      outline: 0 none;
+      text-decoration: none;
+    }
+  }
+}
+
+  .ui-helper-hidden-accessible {
+    display: none;
+  }
+
+

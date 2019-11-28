@@ -1,0 +1,20 @@
+  <%= semantic_form_for(@entry, :html => {:multipart => true}) do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :title %>
+      <%# f.input :document_date,  :as => :date_select, :start_year => 1978, :end_year => Date.today.year, :include_blank => false %>
+      <%= f.input :document_date, :as => :string  %>
+      <%= f.input :description %>
+      <%= f.input :author %>
+      <%= f.input :doc,          :as => :file, :hint => "document currently associated : #{@entry.doc.to_s}" %>
+      <%= f.input :categories,    :as => :check_boxes %>
+      <%= f.input :subcategories, :as => :check_boxes %>
+      <%= f.input :entry_type,    :as => :select,  :include_blank => false %>
+      <%= f.input :published,     :as => :select, :include_blank => false %>
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action :submit, :as => :button %>
+    <% end %>
+  <% end %>
+
+
+

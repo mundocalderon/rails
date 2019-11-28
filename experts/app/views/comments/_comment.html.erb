@@ -1,0 +1,9 @@
+<%= div_for comment do %>
+  <p class="dateandoptions pull-right muted">
+    Posted <%=time_ago_in_words(comment.created_at)%> ago<br />
+  </p>
+    <p><b><%= comment.title %></b></p>
+  <%= content_tag(:p, comment.comment, :class => "comment-body well") %>
+  <%= button_to 'Delete', comment_path(comment), :method => :delete, :class => "delete btn btn-danger btn-small", :remote => true  %>
+
+<% end %>

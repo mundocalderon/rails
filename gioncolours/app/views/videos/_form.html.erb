@@ -1,0 +1,25 @@
+<div class='col-md-8'>
+	<%= simple_form_for @video,
+	wrapper_mappings: {
+	  check_boxes: :vertical_radio_and_checkboxes,
+	  radio_buttons: :vertical_radio_and_checkboxes,
+	  file: :vertical_file_input,
+	  boolean: :vertical_boolean
+	} do |f| %>
+
+	      <%= f.input :title %>
+
+	      <%= f.input :description, as: :bootsy, :class => 'form-control textarea', input_html:{ rows:'20' } %>
+ 
+		  <%= f.association :video_types, as: :check_boxes %>
+
+	      <%= f.input :video_url %>
+
+
+  
+	  <%= f.button :submit, :class => 'btn btn-primary' %>
+	  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	            announcements_path, :class => 'btn btn-default' %>
+ 
+	<% end %>
+</div>

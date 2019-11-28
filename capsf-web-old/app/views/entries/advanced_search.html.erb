@@ -1,0 +1,34 @@
+<div id="content-left">
+  <div id="content-left-in">
+    <h2>Document Search</h2>
+    <%= form_tag advanced_search_path, method: :get do %>
+      <p>
+      <%= text_field_tag :query, params[:query], :class =>"text-field" %>
+        <%= submit_tag "Search", name: nil, :class =>"button"%>
+      </p>
+
+      <% end %>
+      
+      <% @entries.each do |entry| %>
+        <div class="article box">
+          <div class="article-desc">
+            <h3><%= link_to "#{entry.title.titleize}", entry.doc_url.to_s %></h3>
+            
+            <p class="info">Published on:<strong><%= entry.document_date.blank? ? " Date Not Known" : entry.document_date.strftime('%B %d, %Y') %></strong><br>
+            Entry Type:<strong><%= entry.entry_type.name %></strong></p>
+            
+            <p class="nomb"><%= entry.description.capitalize %></p>
+          
+            <p class="info ">Categories:<% for category in entry.categories %><%= category.name %> | <% end %></p>
+            
+            <p class="info">SubCategories:<% for subcategory in entry.subcategories %><%= subcategory.name %> | <% end %><p>
+        
+            <%= link_to 'Show', entry %>
+            <%= link_to 'Edit', edit_entry_path(entry) %>
+          </div>
+        </div>
+      <% end %>
+
+  </div>
+</div>
+

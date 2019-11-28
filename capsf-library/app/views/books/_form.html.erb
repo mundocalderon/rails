@@ -1,0 +1,22 @@
+<%= simple_form_for @book, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :publication_type, collection: ["Printed Book", "Binder", "Periodical","Compact Disc (CD)", "Videotape (VHS)", "Video Disc (DVD)","Other"], :include_blank => false  %>
+  <%= f.input :date_of_publication, collection: 1900..Time.now.year %>
+  <%= f.input :published_by %>
+  <%= f.input :edition %>
+  <%= f.input :number_of_copies, collection:0..10, :include_blank => false %>
+  <%= f.input :volume %>
+  <%= f.input :citation %>
+  <%= f.input :location, :as => :grouped_select, :collection =>
+ 	[['Main Library',['ML-Shelf 1','ML-Shelf 2','ML-Shelf 3','ML-Shelf 4','ML-Shelf 5','ML-Shelf 6','ML-Shelf 7']],
+	['Resource Filing Room',['RFR-Inside','RFR-Outside']],['UCIP Room',[]],['Stations',['Stations-East','Stations-West','Stations-South']],
+	['Central Hallway',['CH-Shelf 1','CH-Shelf 2','CH-Shelf 3','CH-Shelf 4','CH-Shelf 5','CH-Shelf 6','CH-Shelf 7','CH-Shelf 8','CH-Shelf 9','CH-Shelf 10','CH-Shelf 11','CH-Shelf 12','CH-Shelf 13','CH-Shelf 14','CH-Shelf 15','CH-Shelf 16','CH-Shelf 17','CH-Shelf 18','CH-Shelf 19','CH-Shelf 20','CH-Shelf 21','CH-Shelf 22', 'CH-Shelf 23']]], :group_method => :last, %>
+  <%= f.association :contributors, label: "Authors", :hint => 'Use the SHIFT key to choose more than one.' %>
+  <%= f.association :editors, label: "Editors" %>
+  
+  <div class="form-actions">
+    <%= f.button :submit, :class => ' btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                books_path, :class => 'btn' %>
+  </div>
+<% end %>

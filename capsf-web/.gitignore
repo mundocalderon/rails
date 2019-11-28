@@ -1,0 +1,17 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+*.swp
+public/uploads/*
+
+Gemfile.lock
+
+db/ImportInProgress.xlsx
+
+db/keywords.csv
+
+db/~$ImportInProgress.xlsx
+
+lib/assets/links.csv

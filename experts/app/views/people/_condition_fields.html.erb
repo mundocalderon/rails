@@ -1,0 +1,10 @@
+<div class="field">
+  <%= f.attribute_fields do |a| %>
+    <%= a.attribute_select associations: [:specialties, :credentials] %>
+  <% end %>
+  <%= f.predicate_select compounds:false, only: [:cont, :not_cont, :eq, :not_eq, :blank, :null, :not_null, :lt, :gt] %>
+  <%= f.value_fields do |v| %>
+    <%= v.text_field :value %>
+  <% end %>
+  <%= link_to "remove", '#', class: "remove_ransack_fields" %>
+</div>

@@ -1,0 +1,5 @@
+<p><%= @resource.email %> has requested access to CAPSF!</p>
+
+<p>You must confirm the account email by  the link below and also assign the new user a Role via the Edit User page.</p>
+
+<p><%= link_to 'Confirm user account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

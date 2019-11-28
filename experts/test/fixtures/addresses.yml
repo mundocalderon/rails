@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  line_1: MyString
+  line_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  addr_status: MyString
+  active_date_from: 2013-04-12
+  active_date_to: 2013-04-12
+  county_id: MyString
+  person_id: MyString
+
+two:
+  line_1: MyString
+  line_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  addr_status: MyString
+  active_date_from: 2013-04-12
+  active_date_to: 2013-04-12
+  county_id: MyString
+  person_id: MyString

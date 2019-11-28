@@ -1,0 +1,17 @@
+<%= semantic_form_for(@event, :html => {:multipart => true}) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :start_date, :as => :string %>
+    <%= f.input :host %>
+    <%= f.input :description, :hint => "Note: If there is an address for the event, please include that here." %>
+    <%= f.input :attachment_name %>
+    <%= f.input :attachment, :as => :file %>
+    <%= f.input :event_type, :as => :select, :collection =>['Training Seminar', 'CAP Holiday', 'CAP Training']%>
+    <%= f.input :published, :as => :select, :include_blank => false %>
+    <%= f.input :end_date, :as => :hidden  %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :button %>
+  <% end %>
+<% end %>

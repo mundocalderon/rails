@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  middle_initial: MyString
+  suffix: MyString
+  date_of_birth: 2013-04-12
+  date_of_death: 2013-04-12
+  social_security_number: 1
+  tax_id: MyString
+  license: MyString
+  hidden_note: MyText
+  spanish_speaking: 
+  status: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  middle_initial: MyString
+  suffix: MyString
+  date_of_birth: 2013-04-12
+  date_of_death: 2013-04-12
+  social_security_number: 1
+  tax_id: MyString
+  license: MyString
+  hidden_note: MyText
+  spanish_speaking: 
+  status: MyString

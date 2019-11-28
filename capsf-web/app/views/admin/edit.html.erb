@@ -1,0 +1,15 @@
+<%- model_class = User %>
+<h2>Edit User</h2>
+
+<%= simple_form_for(@user, :url => admin_update_user_path, :classes => 'form-vertical' ) do |f| %>
+    <div class="form-inputs">
+		<%= f.input :email %>
+    	<%= f.input :role, collection: ["Admin", "User", "SuperAdmin"] %>
+	</div>
+	
+	<div class="form-actions">
+    	<%= f.button :submit, :class => 'btn btn-primary', :label => "Update" %>
+			<%= link_to 'Back', :back , :class => 'btn btn-small' %>	</div>
+<% end %>
+
+

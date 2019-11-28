@@ -1,0 +1,18 @@
+<div id="content-left">
+  <div id="content-left-in">
+    <h2>California Supreme Court</h2>
+        <p>Aside from the sub-pages listed below much of the news archive content should go in here.</p>  
+ 
+    <% @entries.each do |entry| %>
+      <div class="article box">
+        <div class="article-desc">
+          <h3><%= link_to "#{entry.title.titleize}", entry.doc_url.to_s %></h3>
+
+          <!-- <p class="info">Published on: <strong><%= entry.created_at.strftime('%B %d, %Y') %></strong></p>
+          <p class="nomb"><%= entry.description.capitalize %></p>-->
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

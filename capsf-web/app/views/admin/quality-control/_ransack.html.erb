@@ -1,0 +1,36 @@
+<h2> Search Entries </h2>
+<%= search_form_for @search, url: entries_list_path, :class => 'form-inline' do |f| %>
+  <div class="field">
+	<%= f.label :title_cont %>
+	<%= f.text_field :title_cont %>
+	</div>
+	<div class="field">
+	<%= f.label "Document Date between" %>
+	<%= f.text_field :document_date_gteq %>
+	<%= f.label "and" %>
+	<%= f.text_field :document_date_lteq %>
+	</div>
+	<div class="field">
+	<%= f.label "Entry created between" %>
+	<%= f.text_field :created_at_gteq %>
+	<%= f.label "and" %>
+	<%= f.text_field :created_at_lteq %>
+	</div>
+
+	<div class="field">
+	<%= f.check_box :published_eq %>
+	<%= f.label "Published"%>
+	</div>
+
+  <h4>Sort:</h4>
+  <div class="search-field">
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
+    <% end %>
+  </div>
+
+  <div class="entries-list-buttons"><%= f.submit "Search" , :class => "btn btn-info btn-large"%> 
+	<%= link_to "Reset Search", entries_list_path, :class => 'btn btn-link' %></div>
+
+<% end %>
+<hr class="seperator" />

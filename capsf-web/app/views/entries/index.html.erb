@@ -1,0 +1,164 @@
+<% content_for :top do %>
+	<% if params[:tag] %>
+			<h2><%= params[:tag] %></h2>
+		<% else %>
+			<h2>News & Current Affairs</h2>
+		<% end %>
+<% end %>
+
+<% content_for :right do %>
+
+  <div class="span4 pull-right">
+    <div class="activity-feed">
+    	<a href="javascript:void(0)"><h4> Activity Feed</h4></a>
+    </div>
+    <div class="activities-box ">
+      
+      <div id="activities">
+        <%= render :partial => "activities"%>
+      </div>
+      
+      <div id="activity-paginator">
+        <%= paginate @activities, :remote => true, :theme => 'bootstrap_theme' %>
+      </div>
+
+    </div>
+
+  </div>
+<% end %>
+
+<!-- TODO: FIGURE OUT A REAL WAY TO DETERMINE IF TOPICS AND KEYWORDS PAGE IS CURRENT_PAGE -->
+<% if params[:category] == "17" %>
+
+
+	<div class="span10">
+		<h3>Tags:</h3>
+		
+		<div class="row-fluid"><% @tags.each do |tag| %>
+			<div class="popover popover-static top">
+				<div class="arrow"></div>
+				<h3 class="popover-title"><strong><%= link_to tag.name, tag_path(tag.name) %></strong><span class="pull-right item-multiplier"> x <%= tag.count %></span></h3>
+				<div class='popover-content'><p class="no-overflow"><small>i.e. <%=(Entry.tagged_with(tag.name).map{ |e| link_to e.title, e }.join(", ")).html_safe %></small></p></div>
+			</div>
+		<% end %>
+		</div><br>
+		
+		
+		<div class="row-fluid"><p>
+		<%= @all_tags.map{ |tag| (link_to tag.name, tag_path(tag.name))}.join(", ").html_safe %>
+		</p></div>
+
+	</div>
+		<div class="span2 pull-right tag-list">
+			<ul class="nav">
+			<% @all_tags.each do |tag|%>	
+				<li><%= link_to tag.name, tag_path(tag.name) %></li>
+			<% end %>
+			</ul>
+		</div>
+
+	
+<% elsif params[:category] %>
+
+	<div class="subcategory-drawer">
+		<%= link_to "Collapse Headings", "javascript:void(0)",:class => "btn btn-primary pull-right" %>
+	</div>
+	<% @subcategories.each do |subcategory| %>	
+		<% if !subcategory.entries.empty? %>					
+			<h3 class="subcategory"><%= subcategory.name %><small><%= link_to "...view all entries", subcategory_path(subcategory) %></small></h3>
+			<!--hr class="no-top-margin"-->
+			<div class="subcategory-box in">
+				
+				<table class="table table-striped ">
+				  <tbody>
+				    <% subcategory.entries.limit(25).each do |entry| %>
+				      <tr>
+				        <td><%= link_to entry.title, entry_path(entry) %></td>
+								<td><%= entry.author %></td>
+								<td><%= entry.document_date.try(:strftime, '%B %d, %Y') %></td>
+				        <td><%= link_to "Download", entry.doc_url if !entry.doc_url.blank? %><%= link_to "Exernal Website", entry.external_website, target: "_blank" if !entry.external_website.blank? %></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				
+				
+				<!--div>Commented out to test tabled view
+				<% subcategory.entries.limit(10).each do |entry| %>
+					<% render :partial => "single_entry", locals: { e:entry } %>
+				<% end %>
+				</div-->
+			
+			</div>
+		<% end %>
+	<% end %>
+	
+<% elsif params[:tag] %>
+  <h3>Entries tagged with: "<%= params[:tag] %>"</h3>
+	<table class="table table-striped ">
+	  <tbody>
+			<% @entries.each do |entry| %>
+	      <tr>
+	        <td><%= link_to entry.title, entry_path(entry) %></td>
+					<td><%= entry.author %></td>
+					<td><%= entry.document_date.try(:strftime, '%B %d, %Y') %></td>
+	        <td><%= link_to "Download", entry.doc_url if !entry.doc_url.blank? %><%= link_to "Exernal Website", entry.external_website, target: "_blank" if !entry.external_website.blank? %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	
+	<%= paginate @entries %>
+		<!--% render :partial => "single_entry", locals: { e:entry }%-->
+
+	
+<% else %>
+
+	<div class="span8">
+		<%= render :partial => "ransack" if current_page?( search_path ) %>
+		<table class="table table-striped ">
+		  <tbody>
+				<% @entries.each do |entry| %>
+		      <tr>
+		        <td><%= link_to entry.title, entry_path(entry) %></td>
+						<td><%= entry.author %></td>
+						<td><%= entry.document_date.try(:strftime, '%B %d, %Y') %></td>
+		        <td><%= link_to "Download", entry.doc_url if !entry.doc_url.blank? %><%= link_to "Exernal Website", entry.external_website, target: "_blank" if !entry.external_website.blank? %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+		
+		<!--% render :partial => "single_entry", locals: { e:entry }%-->
+
+		
+		
+		<h2>Welcome</h2>
+      <p>Welcome to the California Appellate Project - San Francisco web site. 
+      The purpose of this site is to act as a resource for counsel representing death row inmates
+      on direct appeal and state habeas corpus proceedings. For assistance in non-capital appeals
+      in the Second District of the California Court of Appeal, contact the CAP offices in Los Angeles. </p>
+      <p>CAP's goal is to make this web site as useful and easy to use as possible.
+      If you have any suggestions for improving this site, or are experiencing any difficulty using 
+      any aspect of this site, please contact CAP at (415) 495-0500 or e-mail 
+      <%= mail_to "sitemaster@capsf.org", nil, :replace_at => "_at_", :replace_dot => "_dot_" %>.</p>
+
+    <h3>About California Appellate Project</h3>
+    <p>The California Appellate Project in San Francisco (CAP-SF) is a non-profit corporation 
+    established by the State Bar of California in 1983 as a legal resource center to implement 
+    the constitutional right to counsel for indigent persons facing execution. CAP serves the largest
+    population of condemned individuals in the country and is funded primarily by a contract with the 
+    Judicial Council of California. </p>
+     
+    <p>CAP-SF assists private counsel appointed by the California Supreme Court to represent indigent 
+    defendants in capital cases challenging their convictions and sentences on direct appeal and through
+    habeas corpus proceedings, and provides them with professional training and litigation resource materials.
+    In addition, CAP-SF assists unrepresented death row inmates by collecting and preserving evidence for their
+    post-conviction claims, and by providing advocacy as needed during the period of incarceration before
+    counsel is appointed.  CAP-SF also consults, at the request of the judiciary, on policy matters regarding
+    indigent defense representation in capital cases.
+    </p>
+      
+	</div>
+
+<% end %>

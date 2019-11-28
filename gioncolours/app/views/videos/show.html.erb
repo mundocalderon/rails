@@ -1,0 +1,32 @@
+<%- model_class = Video -%>
+<div class="container">
+	<div class="row">
+    	<div class="col-md-12">
+			
+			<div class="page-header">
+			  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+			</div>
+
+			<dl class="dl-horizontal">
+			  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+			  <dd><%= @video.title %></dd>
+			  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+			  <dd><%=raw @video.description %></dd>
+			  <dt><strong>Video Category:</strong></dt>
+			  <dd><%= @video.video_types.map{ |t| t.title }.join(", ") %></dd>
+			  <dt><strong>Video:</strong></dt>
+			  <dd><iframe width="640" height="480" src="//www.youtube.com/embed/<%= youtube_id(@video.video_url) %>" frameborder="0" allowfullscreen></iframe></dd>
+			</dl>
+
+			<%= link_to t('.back', :default => t("helpers.links.back")),
+			              videos_path, :class => 'btn btn-default'  %>
+			<%= link_to t('.edit', :default => t("helpers.links.edit")),
+			              edit_video_path(@video), :class => 'btn btn-default' %>
+			<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			              video_path(@video),
+			              :method => 'delete',
+			              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			              :class => 'btn btn-danger' %>
+		</div>
+	</div>
+</div>

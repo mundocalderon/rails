@@ -1,0 +1,19 @@
+<div id="content-left">
+  <div id="content-left-in">
+    <h2>CAP News and Updates</h2>
+
+
+    <% @entries.each do |entry| %>
+      <div class="article box">
+        <div class="article-desc">
+          <h3><%= link_to "#{entry.title.titleize}", entry.doc_url.to_s unless entry.doc_url.nil? %></h3>
+          <h3><%= link_to "#{entry.title.titleize}", entry.author if entry.doc_url.nil? %></h3>
+
+          <!-- <p class="info">Published on: <strong><%= entry.created_at.strftime('%B %d, %Y') %></strong></p>
+          <p class="nomb"><%= entry.description.capitalize %></p>-->
+        </div>
+      </div>
+    <% end %>
+        
+  </div>
+</div>

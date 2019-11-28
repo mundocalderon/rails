@@ -1,0 +1,39 @@
+<%= form_for @document, :html => {:multipart => true, :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :document_type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :document_type, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date_of_file, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :date_of_file, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :person_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :person_id, :class => 'number_field' %>
+    </div>
+  </div>
+    <%= f.file_field :expert_file %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                documents_path, :class => 'btn' %>
+  </div>
+<% end %>

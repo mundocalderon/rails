@@ -1,0 +1,12 @@
+<dl class="activity-box">
+  <dt><p><%= a.created_at.strftime("%b")%> <%= a.created_at.strftime("%d")%></p> </dt>
+  
+  <dd class="muted">  
+  <b><%= a.text %></b><br>
+  A user has deleted a file that was in <%= p[:categories]%>. 
+  File is titled <%= p[:title] %>. 
+
+  </dd>
+<hr>
+</dl>
+

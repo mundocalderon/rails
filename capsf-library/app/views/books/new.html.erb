@@ -1,0 +1,41 @@
+<%- model_class = Book -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h1>
+</div>
+<%= render :partial => 'form' %>
+
+<hr>
+<table id='new_books' class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:location) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @list.each do |book| %>
+      <tr data-provides="rowlink">
+        <td><%= link_to book.title, book_path(book), :class => 'rowlink' %></td>
+        <td><%= book.location %></td>
+        <td class="nolink">
+		  <%= link_to "Check Out", 
+		 			  checkout_path(book),
+		 			  :class => 'btn btn-info' %>
+		  <%= link_to "Return", 
+					  return_path(book), 
+					  :class => 'btn btn-danger' %>
+         
+ 		  <% link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_book_path(book), :class => 'btn btn-mini' %>
+          <% link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      book_path(book),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

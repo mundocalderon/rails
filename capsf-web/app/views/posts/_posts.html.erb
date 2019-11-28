@@ -1,0 +1,8 @@
+<% @posts.reverse_each do |post| %>
+  <div class="page-post">
+    <h2 class="post-title"> <%= post.title %> </h2>
+    <p class="inline-hints">Posted on <%= post.created_at.to_formatted_s(:short) %> </p>
+    <p class="post-content"> <%= post.content %></p> Version <%= post.version %> | <%= link_to "edit", edit_post_path(@page, post.id) %> </p>
+  </div>
+<% end %>
+              

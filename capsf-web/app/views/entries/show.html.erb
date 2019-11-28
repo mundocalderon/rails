@@ -1,0 +1,17 @@
+<!--div class="well well-small"><i class="icon-home"> </i> /</div-->
+<% content_for :top do %>
+	<h2>Entry Details</h2>
+<% end %>
+
+<div class="row-fluid">
+	<div class="span11">
+		<%= render :partial => "single_entry", locals: {e: @entry} %>
+	</div>
+</div>
+
+<div class='form-actions'>
+	<%= link_to 'Edit', edit_entry_path(@entry), :class => 'btn btn-info' if current_user.admin? %> 
+	<%= link_to 'Back', :back , :class => 'btn' %>
+	<%= link_to 'Delete', entry_path(@entry), :method => :delete, :class => "btn btn-danger", "data-confirm" => "Are you sure?"  if current_user.super_admin? %>
+</div>
+

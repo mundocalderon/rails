@@ -1,0 +1,46 @@
+<%- model_class = Brief -%>
+
+<% content_for :top do %>
+	  <h2>Brief Bank</h2>
+<% end %>
+<h3>Brief Bank Search:</h3>
+<%= simple_form_for :query,  url: briefs_search_path , :method => :get, :html => { :class => 'form-search'} do |f| %>
+  <%= f.input :query, :input_html => { class: "span7 search-query", 
+																				placeholder: "Search for a brief by Name of Defendant, Brief Type, Source, etc.", :autocomplete => "off" }, label: false, :autofocus => true %>
+  <%= f.submit "Search Brief Bank", :class => 'btn' %>
+	<%= link_to "Reset Search", briefs_path, :class => 'btn btn-link' %>
+
+<% end %>
+
+<%= paginate @briefs %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+	    <th><%= model_class.human_attribute_name(:last_name) %></th>
+      <th><%= model_class.human_attribute_name(:first_name) %></th>
+      <th><%= model_class.human_attribute_name(:court_id) %></th>
+      <th><%= model_class.human_attribute_name(:division_id) %></th>
+      <th><%= model_class.human_attribute_name(:source_id) %></th>
+      <th><%= model_class.human_attribute_name(:brief_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:date_filed) %></th>
+			<th>Brief Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @briefs.each do |brief| %>
+      <tr data-provides="rowlink">
+	      <td><%= link_to brief.last_name, brief_path(brief), :class => 'rowlink' %></td>
+        <td><%= brief.first_name %></td>
+        <td><%= brief.brief_court_name %></td>
+        <td><%= brief.brief_division_name %></td>
+        <td><%= brief.brief_source_name %></td>
+        <td><%= brief.title %></td>
+        <td><%= brief.date_filed %></td>
+				<td><%= link_to "Download", brief.doc_url.to_s %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

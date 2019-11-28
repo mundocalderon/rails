@@ -1,0 +1,40 @@
+<%- model_class = Subcategory -%>
+<% content_for :top do %>
+	<h2><%= @subcategory.name %></h2>
+<% end %>
+
+<h2><% @subcategory.name  %></h2><hr class="no-top-margin">
+<div class="row-fluid">
+	<div class="span8">
+		<dl class="dl-horizontal well no-top-margin ">
+		  <dt><strong>Parent <%= model_class.human_attribute_name(:category) %>:</strong></dt>
+		  <dd><%= @subcategory.category.name if !@subcategory.category.blank? %></dd>
+		  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+		  <dd><%= @subcategory.description %></dd>
+		</dl>
+	</div>
+</div>
+
+<% @subcategory.entries.each do |e| %>
+	<div class="row-fluid">
+		<div class="span8">
+			<h5 class="entry-title"><%= link_to e.title, e %></h5>
+			<p class="muted">
+				<i class="icon-file"> </i> <%= e.entry_type.name %> | 
+			  <small><i class="icon-calendar"></i><%= e.document_date.blank? ?  " Date Not Known" : e.document_date.strftime(' %B %d, %Y') %></small> |
+				<%= link_to "Download File", e.doc_url if !e.doc_url.blank? %> 
+				<%= link_to "Link to Webpage", e.external_website, target: "_blank" if !e.external_website.blank? %>
+			</p>
+
+			<div class="row-fluid"><div class="span12"<p><%= truncate(e.description, length:340) %></p></div></div>
+
+
+
+			<div class='row-fluid'>
+				<div class="span8"><small><i class="icon-tags"></i> <%= raw e.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></small></div>
+			</div>
+			<hr class="no-top-margin">
+		
+		</div>
+	</div>
+<% end %>

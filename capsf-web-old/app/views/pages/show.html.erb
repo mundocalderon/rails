@@ -1,0 +1,23 @@
+<div id='content-left'>
+  <div id='content-left-in'>
+        <h1>
+          <%= @page.title %>
+        </h1>
+
+        <p>
+          <%= @page.description %>
+        </p>
+        <hr class='seperator'>
+
+        <% if @posts.count < 0 %>
+          <p>There aren't any posts on this page! But you can add one below!</p>
+        <% else %>
+          <%= render "posts/posts" %>
+        <% end %>
+
+        <%= render "posts/form" %>
+
+        <!--%= link_to 'Edit', edit_page_path(@page) %--> 
+        <!--%= link_to 'Back', pages_path %-->
+  </div>
+</div>

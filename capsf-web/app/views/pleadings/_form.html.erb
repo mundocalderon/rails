@@ -1,0 +1,26 @@
+<%= simple_form_for( @pleading, :html => { :class => 'form-horizontal', :multipart => true }) do |f| %>
+<div class="form-inputs">
+
+  <%= f.input :title %>
+  <%= f.input :agency %>
+  <%= f.input :date_filed %>
+
+  <%= f.input :description, :as => :text, input_html: { rows:8, class: "input-xxlarge", placeholder: "Description"}  %>
+  <%= f.input :case_name %>
+	<%= f.association :dpi_chapters , input_html: { class: "input-xxlarge"}, label: "Associated DPI Sections" %>
+	<%= f.association :plead_categories, :as => :check_boxes , input_html: { class: "input-xxlarge"}, label: "Category" %>
+	<%= f.association :plead_keywords , input_html: { class: "input-xxlarge"}, label: "Keywords" %>
+	
+  <%= f.input :request_by %>
+  <%= f.input :doc, input_html: { class: "input-xxlarge", placeholder:"Document" },  :hint => "document currently associated : #{@pleading.doc.to_s}" %>
+  <%= f.input :permission,label: false, :inline_label => "Permission from Counsel" %>
+  <%= f.input :isReviewed, label: false, :inline_label => "Reviewed by CAP Staff" %>
+  <%= f.input :isAvailable,label: false, :inline_label => "Publish to web" %>
+
+</div>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                pleadings_path, :class => 'btn' %>
+  </div>
+<% end %>

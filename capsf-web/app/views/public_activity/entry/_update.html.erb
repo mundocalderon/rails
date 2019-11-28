@@ -1,0 +1,11 @@
+<dl class="activity-box">
+  <dt><p><%= a.created_at.strftime("%b") %> <%= a.created_at.strftime("%d") %></p></dt>
+  
+  <dd>  
+  <b><%= link_to "#{a.text}", "uploads/#{p[:doc_url].to_s}" %></b><br>
+  A user has updated a <%= p[:description] %> that is filed in <%= p[:categories] %>. 
+  File is titled <%= link_to "#{p[:title]}", "uploads/#{p[:doc_url].to_s}" %>.
+  </dd>
+  <hr>
+
+</dl>

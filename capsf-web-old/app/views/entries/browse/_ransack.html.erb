@@ -1,0 +1,17 @@
+<h1> Entries </h1>
+<%= search_form_for @search, url: search_path do |f| %>
+  <%= f.condition_fields do |c| %>
+    <%= render "entries/browse/condition_fields", f: c %>
+  <% end %>
+
+  <h4>Sort:</h4>
+  <div class="search-field">
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
+    <% end %>
+  </div>
+
+  <div class"button"><%= f.submit "Search" , :class => "button"%> </div>
+<% end %>
+<hr class="seperator" />
+

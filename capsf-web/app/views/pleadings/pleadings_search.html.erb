@@ -1,0 +1,40 @@
+<%- model_class = Pleading -%>
+
+<% content_for :top do %>
+	  <h2>Sample Pleadings</h2>
+<% end %>
+<h3>Sample Pleading Search:</h3>
+<%= simple_form_for :query,  url: pleadings_search_path , :method => :get, :html => { :class => 'form-search'} do |f| %>
+  <%= f.input :query, :input_html => { class: "span7 search-query", 
+																				placeholder: "Search for a sample pleading by Title, Case Name, Category, etc.", :autocomplete => "off" }, label: false, :autofocus => true %>
+  <%= f.submit "Search Sample Pleadings", :class => 'btn' %>
+	<%= link_to "Reset Search", pleadings_path, :class => 'btn btn-link' %>
+
+<% end %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:date_filed) %></th>
+      <th><%= model_class.human_attribute_name(:agency) %></th>
+      <th><%= model_class.human_attribute_name(:case_name) %></th>
+
+		</tr>
+  </thead>
+  <tbody>
+    <% @pleadings.each do |pleading| %>
+      <tr>
+        <td><%= link_to pleading.title, pleading_path(pleading) %></td>
+        <td><%= pleading.description %></td>
+        <td><%= pleading.date_filed.to_date.try(:strftime, '%B %d, %Y')  %></td>
+        <td><%= pleading.agency %></td>
+        <td><%= pleading.case_name %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @pleadings %>

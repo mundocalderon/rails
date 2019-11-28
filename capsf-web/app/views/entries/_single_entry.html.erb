@@ -1,0 +1,22 @@
+
+<div class="row-fluid">
+	<div class="span10">
+		<h5 class="entry-title"><%= link_to e.title, e %></h5>
+		<p class="muted">
+			<i class="icon-file"> </i><strong> <%= e.entry_type.name %></strong> | 
+			<small><i class="icon-calendar"></i><%= e.document_date.blank? ?  " Date Not Known" : e.document_date.strftime(' %B %d, %Y') %></small> |
+			<%= link_to "Download File", e.doc_url if !e.doc_url.blank? %> 
+			<%= link_to "Link to Webpage", e.external_website, target: "_blank" if !e.external_website.blank? %> 
+		</p>
+		<% if !e.description.blank?%>
+			<div class="row-fluid"><div class="span12"<p><%= params[:category].nil? ? e.description : truncate(e.description, length:340) %></p></div></div>
+		<% end %>
+
+
+		<div class='row-fluid'>
+			<div class="span9"><small><i class="icon-tags"></i> <%= raw e.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ') %></small></div>
+		</div>
+		<hr class="no-top-margin">
+		
+	</div>
+</div>

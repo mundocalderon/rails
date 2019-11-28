@@ -1,0 +1,16 @@
+<h2>Feedback</h2>
+<%= simple_form_for(@message, :url =>contact_path, :html => { :class => 'form-vertical' }) do |f| %>
+	<div class="form-inputs">
+    	<%= f.input :name, input_html: { class: "input-xlarge", placeholder: "Name" }, :autofocus => true %>
+	    <%= f.input :email, input_html: { class: "input-xlarge", placeholder: "Email Address" } %>
+	    <%= f.input :subject, input_html: { class: "input-xlarge", placeholder: "Subject" } %>
+	    <%= f.input :body, :as => :text, input_html: { rows: 8, class: "input-xlarge", placeholder: "Leave us a message . . ." } %>
+   </div>
+		<%= recaptcha_tags :public_key => '6LcZ8dMSAAAAAEKxlmOsAUIhPM3s1oWkGWx_N7QD' %>
+
+   <div class="form-actions">
+    	<%= f.button :submit, :class => 'btn-primary', :label =>"Submit Message" %>
+			<%= link_to "Back", :back, :class => 'btn' %>
+   </div>
+
+<% end %>

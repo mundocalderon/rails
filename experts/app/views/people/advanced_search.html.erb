@@ -1,0 +1,50 @@
+<%- model_class = Person -%>
+<div class="page-header">
+  <h1>Experts<%t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<div class="hero-unit">
+	<%= search_form_for @search, :url => advanced_search_path, :class => 'no-bottom-margin form-inline' do |f| %>
+		<h3 class='no-bottom-margin'>Search by Adding Conditions: </h3>
+		<%= f.condition_fields do |c| %>
+			<%= render "condition_fields", f: c %>
+		<% end %> 
+		<p><%= link_to_add_fields "Add Conditions", f, :condition %></p>	    
+		<div class='actions'><%= f.submit "Search", :class => 'btn btn-primary btn-large' %></div>
+	<% end %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:first_name) %></th>
+      <th><%= model_class.human_attribute_name(:last_name) %></th>
+      <th><%= model_class.human_attribute_name(:middle_initial) %></th>
+	  <th><%= model_class.human_attribute_name(:specialties) %></th>
+	  <th><%= model_class.human_attribute_name(:credentials) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= link_to person.first_name, person_path(person) %></td>
+        <td><%= person.last_name %></td>
+        <td><%= person.middle_initial %></td>
+        <td><ul><% person.specialties.each do |s| %><li><%= s.name %></li><% end %></td>
+        <td><ul><% person.credentials.each do |c| %><li><%= c.name %></li><% end %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_person_path(person), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      person_path(person),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @people %>
